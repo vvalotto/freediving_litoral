@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const cursos = (await getCollection("cursos")).sort(
+  (a, b) => (a.data.orden ?? 0) - (b.data.orden ?? 0)
+);
+---
+
+<BaseLayout title="Cursos">
+  <h1>Cursos</h1>
+  <ul>
+    {
+      cursos.map((curso) => (
+        <li>
+          <strong>{curso.data.titulo}</strong>
+          {curso.data.nivel && ` — ${curso.data.nivel}`}
+          {curso.data.duracion && ` (${curso.data.duracion})`}
+          <p>{curso.data.resumen}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
