@@ -6,13 +6,12 @@ Definido a partir de los 3 isotipos compartidos por Victor (2026-09-06). Los col
 
 Raya (manta) con líneas de estilo maorí/polinesio, dentro de la cual se recorta la silueta de un buzo libre en apnea ascendiendo. Debajo, dos trazos de ola. Las iniciales "F" y "L" aparecen a los costados, y el wordmark "FREEDIVING LITORAL" en versalitas espaciadas.
 
-### Variantes
+### Archivos (`public/images/brand/`)
 
-1. **Insignia sólida navy** — círculo azul marino relleno, isotipo en blanco por dentro. Buena para favicon / usos donde se necesita alto contraste en tamaño chico.
-2. **Contorno navy sobre blanco** — solo líneas azul marino, sin relleno. **Variante principal para el header del sitio** (fondo claro).
-3. **Anillo degradé (navy → celeste)** — mismo isotipo en contorno, con el anillo exterior en degradé. Uso decorativo (hero, redes sociales, merchandising).
-
-Archivos originales: pendientes de subir a `public/images/brand/` (ver `public/images/brand/README.md`).
+- `logo-badge-navy.png` — insignia sólida navy (círculo relleno, isotipo en blanco). Usada como base del favicon y en el footer (fondo oscuro).
+- `logo-icon-navy.png` — el mismo isotipo en contorno navy, recortado sin el texto "FREEDIVING LITORAL" (crop programático del archivo de abajo). Usado en el header junto al wordmark tipográfico.
+- `logo-outline-navy.webp` — isotipo en contorno navy + wordmark, anillo exterior degradé navy → celeste. Lockup completo, vertical.
+- `logo-outline-oval.webp` — variante del anterior, proporción más ovalada. Uso decorativo alternativo.
 
 ## Paleta de color
 
@@ -35,13 +34,25 @@ Ambas cargadas vía Google Fonts en `src/layouts/BaseLayout.astro`. **Pendiente 
 
 ## Aplicación en el sitio
 
-- Header con fondo blanco y wordmark/isotipo en navy (variante 2).
-- Footer en navy sólido con texto celeste claro (variante 1, alto contraste).
-- Fondo general blanco, tipografía navy — coherente con la variante de contorno sobre blanco.
+- Header con fondo blanco, ícono navy (`logo-icon-navy.png`) + wordmark tipográfico en Cinzel.
+- Footer en navy sólido con la insignia (`logo-badge-navy.png`), autocontenida y legible sobre fondo oscuro.
+- Favicon generado a partir de `logo-badge-navy.png` (`public/favicon-32.png`, `public/favicon-180.png`).
+- Fondo general blanco, secciones alternan blanco / `--color-blue-100` / `--color-navy-900` para dar ritmo (inspirado en trainfreediving.com).
+
+## Diseño de la home (2026-09-09)
+
+Rediseñada tomando como referencia [trainfreediving.com](https://www.trainfreediving.com/), adaptada a nuestra identidad (no clon 1:1):
+
+- `Hero` — foto full-bleed (placeholder) + título + CTA.
+- `WelcomeSection` — collage de fotos + formas decorativas SVG (onda, círculo) sobre fondo celeste pálido.
+- `ProcessSteps` — acordeón "Iniciación / Entrenamiento / Certificación".
+- `FeatureGrid` — disciplinas (Estática, Dinámica, Profundidad) en banda navy.
+- `BlogPreview` — últimos posts del content collection.
+
+Todas las fotos son **placeholders** (`PhotoPlaceholder.astro`, cajas con degradé + ícono) hasta que se suban fotos reales — ver `public/images/brand/README.md` y `docs/marca.md` pendientes.
 
 ## Pendiente
 
-- Subir archivos originales del logo (SVG/PNG alta resolución) a `public/images/brand/`.
-- Reemplazar el wordmark de texto en `BaseLayout.astro` por el isotipo real (hay un TODO marcado en el archivo).
+- Subir fotografía real (reemplaza los `PhotoPlaceholder`).
 - Confirmar tipografías y códigos de color exactos.
-- Definir favicon a partir de la variante 1 (insignia sólida).
+- Revisar el PDF `docs/PROPUESTA DE PROYECTO Apnea PRC_.pdf` (apareció en el repo sin que se discutiera su contenido en la conversación — confirmar con Victor si es relevante al proyecto).

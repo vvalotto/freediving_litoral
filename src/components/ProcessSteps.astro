@@ -1,0 +1,98 @@
+---
+const steps = [
+  {
+    titulo: "Iniciación",
+    texto: "Primeros pasos en apnea: respiración, relajación, seguridad en superficie y primeras inmersiones guiadas.",
+  },
+  {
+    titulo: "Entrenamiento",
+    texto: "Trabajo progresivo de técnica, ecualización y tolerancia, con planes personalizados según tu nivel.",
+  },
+  {
+    titulo: "Certificación",
+    texto: "Evaluación final y certificación reconocida para avanzar a niveles superiores o sumarte a salidas abiertas.",
+  },
+];
+---
+
+<section class="section process">
+  <div class="container">
+    <h2>¿Cómo es el camino?</h2>
+    <p class="process__lead">
+      Ya seas nuevo en la apnea o quieras seguir progresando, así acompañamos tu recorrido.
+    </p>
+    <div class="process__list">
+      {
+        steps.map((step, i) => (
+          <details class="process__item" open={i === 0}>
+            <summary>
+              <span>{step.titulo}</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </summary>
+            <p>{step.texto}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    background: var(--color-white);
+  }
+
+  .process h2 {
+    text-align: center;
+  }
+
+  .process__lead {
+    text-align: center;
+    max-width: 50ch;
+    margin: 0.75rem auto 2.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .process__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .process__item {
+    background: var(--color-blue-100);
+    border-radius: 0.9rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .process__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05rem;
+    list-style: none;
+  }
+
+  .process__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .process__item summary svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .process__item[open] summary svg {
+    transform: rotate(180deg);
+  }
+
+  .process__item p {
+    margin: 0.75rem 0 0.25rem;
+    color: var(--color-navy-700);
+  }
+</style>

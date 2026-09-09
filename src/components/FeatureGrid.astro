@@ -1,0 +1,76 @@
+---
+const disciplinas = [
+  {
+    titulo: "Apnea Estática (STA)",
+    texto: "Control de la respiración y la mente en superficie: la base de todo entrenamiento de apnea.",
+  },
+  {
+    titulo: "Apnea Dinámica (DYN)",
+    texto: "Distancia en desplazamiento bajo el agua, con y sin aletas, trabajando técnica y eficiencia.",
+  },
+  {
+    titulo: "Inmersión en Profundidad",
+    texto: "Descenso guiado por cabo, con foco en ecualización, relajación y seguridad en cada metro.",
+  },
+];
+---
+
+<section class="section feature-grid">
+  <div class="container">
+    <h2>Disciplinas que trabajamos</h2>
+    <div class="feature-grid__list">
+      {
+        disciplinas.map((d) => (
+          <div class="feature-grid__item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--color-blue-400)" stroke-width="1.5"/><path d="M8 12l3 3 5-6" fill="none" stroke="var(--color-blue-400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>{d.titulo}</h3>
+            <p>{d.texto}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-grid {
+    background: var(--color-navy-900);
+    color: var(--color-blue-100);
+  }
+
+  .feature-grid h2 {
+    text-align: center;
+    color: var(--color-white);
+  }
+
+  .feature-grid__list {
+    display: grid;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .feature-grid__item svg {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-grid__item h3 {
+    font-family: var(--font-base);
+    color: var(--color-white);
+    margin: 0 0 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  .feature-grid__item p {
+    margin: 0;
+    color: var(--color-blue-100);
+    font-size: 0.95rem;
+  }
+
+  @media (min-width: 800px) {
+    .feature-grid__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

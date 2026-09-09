@@ -16,7 +16,8 @@ const base = import.meta.env.BASE_URL;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}favicon-32.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}favicon-180.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,9 +30,13 @@ const base = import.meta.env.BASE_URL;
     <header class="site-header">
       <div class="container">
         <a href={base} class="brand-wordmark">
-          {/* TODO: reemplazar por <img src={`${base}images/brand/logo-outline-navy.svg`} alt="Freediving Litoral" /> cuando se suban los archivos originales del logo */}
+          <img src={`${base}images/brand/logo-icon-navy.png`} alt="" />
           Freediving Litoral
         </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </label>
         <nav class="main-nav">
           <ul>
             <li><a href={base}>Inicio</a></li>
@@ -47,13 +52,34 @@ const base = import.meta.env.BASE_URL;
     </header>
 
     <main>
-      <div class="container">
-        <slot />
-      </div>
+      <slot />
     </main>
 
     <footer class="site-footer">
-      <div class="container">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <img src={`${base}images/brand/logo-badge-navy.png`} alt="Freediving Litoral" class="footer-brand__logo" />
+          <p>Escuela de apnea en el litoral argentino.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Sitio</h3>
+          <ul>
+            <li><a href={base}>Inicio</a></li>
+            <li><a href={`${base}cursos`}>Cursos</a></li>
+            <li><a href={`${base}nosotros`}>Nosotros</a></li>
+            <li><a href={`${base}blog`}>Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Contacto</h3>
+          <ul>
+            <li><a href={`${base}contacto`}>Contacto</a></li>
+            <li><a href={`${base}reservas`}>Reservas</a></li>
+            <li><a href={`${base}galeria`}>Galería</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
         <p>&copy; {new Date().getFullYear()} Freediving Litoral. Todos los derechos reservados.</p>
       </div>
     </footer>

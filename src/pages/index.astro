@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import WelcomeSection from "../components/WelcomeSection.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import BlogPreview from "../components/BlogPreview.astro";
 ---
 
 <BaseLayout title="Inicio">
-  <h1>Freediving Litoral</h1>
-  <p>Escuela de apnea en el litoral argentino. Cursos, salidas y comunidad para explorar el agua conteniendo la respiración.</p>
-  <p><a href={`${import.meta.env.BASE_URL}cursos`}>Ver cursos disponibles →</a></p>
+  <Hero />
+  <WelcomeSection />
+  <ProcessSteps />
+  <FeatureGrid />
+  <BlogPreview />
 </BaseLayout>

@@ -1,0 +1,57 @@
+---
+interface Props {
+  label: string;
+  ratio?: string;
+  variant?: "navy" | "blue" | "outline";
+}
+
+const { label, ratio = "4 / 5", variant = "navy" } = Astro.props;
+---
+
+<div class:list={["photo-placeholder", `photo-placeholder--${variant}`]} style={`aspect-ratio: ${ratio};`}>
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M4 17l4-5 3 3 5-7 4 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.2"/>
+  </svg>
+  <span>{label}</span>
+</div>
+
+<style>
+  .photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border-radius: 1.25rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .photo-placeholder svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .photo-placeholder span {
+    font-size: 0.8rem;
+    max-width: 16ch;
+  }
+
+  .photo-placeholder--navy {
+    background: linear-gradient(160deg, var(--color-navy-700), var(--color-navy-900));
+    color: var(--color-blue-100);
+  }
+
+  .photo-placeholder--blue {
+    background: linear-gradient(160deg, var(--color-blue-100), #ffffff);
+    color: var(--color-navy-700);
+    border: 1px solid rgba(11, 37, 69, 0.12);
+  }
+
+  .photo-placeholder--outline {
+    background: var(--color-white);
+    color: var(--color-navy-700);
+    border: 1.5px dashed var(--color-blue-400);
+  }
+</style>

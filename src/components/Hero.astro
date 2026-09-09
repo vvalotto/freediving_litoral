@@ -1,0 +1,67 @@
+---
+import PhotoPlaceholder from "./PhotoPlaceholder.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="hero">
+  <div class="hero__media">
+    <PhotoPlaceholder label="Foto: buzo en apnea, litoral argentino" ratio="16 / 11" variant="navy" />
+  </div>
+  <div class="container hero__content">
+    <p class="eyebrow">Escuela de Apnea</p>
+    <h1>Explorá tus límites bajo el agua</h1>
+    <p class="hero__lead">
+      Cursos de freediving en el litoral argentino, con foco en técnica, seguridad y progreso real.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn--solid" href={`${base}cursos`}>Ver cursos</a>
+      <a class="btn btn--outline" href={`${base}nosotros`}>Conocenos</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: grid;
+  }
+
+  .hero__media {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .hero__content {
+    padding-block: 2rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin: 0.4rem 0 1rem;
+    max-width: 16ch;
+  }
+
+  .hero__lead {
+    max-width: 48ch;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 800px) {
+    .hero {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+    }
+
+    .hero__content {
+      order: -1;
+      padding-block: 3rem;
+    }
+  }
+</style>

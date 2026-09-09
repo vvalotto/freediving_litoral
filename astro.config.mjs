@@ -6,5 +6,5 @@ import { defineConfig } from 'astro/config';
 // Cuando se migre a hosting propio, quitar "base" y ajustar "site".
 export default defineConfig({
   site: 'https://vvalotto.github.io',
-  base: '/freediving_litoral',
+  base: '/freediving_litoral/',
 });

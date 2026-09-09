@@ -51,6 +51,8 @@ a {
 header.site-header {
   background: var(--color-white);
   border-bottom: 1px solid rgba(11, 37, 69, 0.1);
+  position: relative;
+  z-index: 20;
 }
 
 header.site-header .container {
@@ -58,6 +60,23 @@ header.site-header .container {
   align-items: center;
   justify-content: space-between;
   padding-block: 1rem;
+  position: relative;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.nav-toggle-label svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: var(--color-navy-900);
 }
 
 .brand-wordmark {
@@ -93,19 +112,141 @@ nav.main-nav a:hover {
   color: var(--color-accent);
 }
 
+@media (max-width: 780px) {
+  .nav-toggle-label {
+    display: block;
+  }
+
+  nav.main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-bottom: 1px solid rgba(11, 37, 69, 0.1);
+    box-shadow: 0 8px 16px rgba(11, 37, 69, 0.08);
+  }
+
+  nav.main-nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 1.5rem 1rem;
+  }
+
+  nav.main-nav a {
+    display: block;
+    padding: 0.6rem 0;
+  }
+
+  .nav-toggle:checked ~ nav.main-nav {
+    display: block;
+  }
+}
+
 main {
   min-height: 60vh;
-  padding-block: 3rem;
+}
+
+.section {
+  padding-block: 4rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: var(--font-base);
+  transition: opacity 0.15s ease;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn--solid {
+  background: var(--color-navy-900);
+  color: var(--color-white);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-navy-900);
+  border: 1.5px solid var(--color-navy-900);
 }
 
 footer.site-footer {
   background: var(--color-navy-900);
   color: var(--color-blue-100);
-  padding-block: 2rem;
-  text-align: center;
   font-size: 0.9rem;
 }
 
 footer.site-footer a {
   color: var(--color-blue-100);
+  text-decoration: none;
+}
+
+footer.site-footer a:hover {
+  color: var(--color-white);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  padding-block: 3rem 2rem;
+}
+
+.footer-brand__logo {
+  height: 56px;
+  width: auto;
+  margin-bottom: 0.75rem;
+}
+
+.footer-brand p:last-child {
+  color: rgba(220, 237, 247, 0.75);
+  max-width: 32ch;
+}
+
+.footer-links h3 {
+  font-family: var(--font-base);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  margin: 0 0 0.75rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(220, 237, 247, 0.15);
+  padding-block: 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 700px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
 }

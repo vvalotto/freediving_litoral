@@ -8,15 +8,17 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title="Blog">
-  <h1>Blog</h1>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`${import.meta.env.BASE_URL}blog/${post.id}`}>{post.data.titulo}</a>
-          <p>{post.data.resumen}</p>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="container section">
+    <h1>Blog</h1>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`${import.meta.env.BASE_URL}blog/${post.id}`}>{post.data.titulo}</a>
+            <p>{post.data.resumen}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </BaseLayout>

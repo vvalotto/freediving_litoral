@@ -8,17 +8,19 @@ const cursos = (await getCollection("cursos")).sort(
 ---
 
 <BaseLayout title="Cursos">
-  <h1>Cursos</h1>
-  <ul>
-    {
-      cursos.map((curso) => (
-        <li>
-          <strong>{curso.data.titulo}</strong>
-          {curso.data.nivel && ` — ${curso.data.nivel}`}
-          {curso.data.duracion && ` (${curso.data.duracion})`}
-          <p>{curso.data.resumen}</p>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="container section">
+    <h1>Cursos</h1>
+    <ul>
+      {
+        cursos.map((curso) => (
+          <li>
+            <strong>{curso.data.titulo}</strong>
+            {curso.data.nivel && ` — ${curso.data.nivel}`}
+            {curso.data.duracion && ` (${curso.data.duracion})`}
+            <p>{curso.data.resumen}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </BaseLayout>
