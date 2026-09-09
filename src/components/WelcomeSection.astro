@@ -1,5 +1,4 @@
 ---
-import PhotoPlaceholder from "./PhotoPlaceholder.astro";
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -7,10 +6,10 @@ const base = import.meta.env.BASE_URL;
   <div class="container welcome__grid">
     <div class="welcome__collage">
       <div class="welcome__photo welcome__photo--main">
-        <PhotoPlaceholder label="Foto: instructor con alumnos" ratio="3 / 4" variant="navy" />
+        <img src={`${base}images/gallery/equipo-centro-buceo.jpeg`} alt="Equipo de instructores de Freediving Litoral" />
       </div>
       <div class="welcome__photo welcome__photo--accent">
-        <PhotoPlaceholder label="Foto: salida en el mar" ratio="4 / 3" variant="blue" />
+        <img src={`${base}images/gallery/entrenamiento-nocturno-monoaletas.jpeg`} alt="Instructor guiando a alumnos con monoaleta" />
       </div>
       <svg class="welcome__shape welcome__shape--wave" viewBox="0 0 120 40" aria-hidden="true">
         <path d="M0 20 Q 15 5, 30 20 T 60 20 T 90 20 T 120 20" fill="none" stroke="var(--color-blue-400)" stroke-width="3" stroke-linecap="round"/>
@@ -50,8 +49,19 @@ const base = import.meta.env.BASE_URL;
     padding: 1rem 2rem 2rem 0;
   }
 
+  .welcome__photo img {
+    display: block;
+    width: 100%;
+    border-radius: 1.25rem;
+    object-fit: cover;
+  }
+
   .welcome__photo--main {
     max-width: 260px;
+  }
+
+  .welcome__photo--main img {
+    aspect-ratio: 3 / 4;
   }
 
   .welcome__photo--accent {
@@ -60,6 +70,10 @@ const base = import.meta.env.BASE_URL;
     margin-top: -3rem;
     position: relative;
     z-index: 1;
+  }
+
+  .welcome__photo--accent img {
+    aspect-ratio: 4 / 3;
   }
 
   .welcome__shape {
