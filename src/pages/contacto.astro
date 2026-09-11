@@ -1,10 +1,194 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL;
+
+const contactos = [
+  {
+    nombre: "Instagram",
+    valor: "@freedivinglitoral",
+    href: "https://instagram.com/freedivinglitoral",
+    icono: "instagram",
+  },
+  {
+    nombre: "Correo",
+    valor: "freedrivinglitoral@gmail.com",
+    href: "mailto:freedrivinglitoral@gmail.com",
+    icono: "mail",
+  },
+  {
+    nombre: "WhatsApp",
+    valor: "+54 03434 523986",
+    href: "https://wa.me/5403434523986",
+    icono: "whatsapp",
+  },
+];
 ---
 
 <BaseLayout title="Contacto">
-  <div class="container section">
-    <h1>Contacto</h1>
-    <p>Contenido pendiente: formulario de contacto, WhatsApp, redes sociales y ubicación.</p>
-  </div>
+  <section class="page-header">
+    <img
+      class="page-header__photo"
+      src={`${base}images/gallery/sol-superficie-profundidad.jpg`}
+      alt="Sol atravesando la superficie del agua"
+    />
+    <div class="page-header__scrim"></div>
+    <div class="container page-header__content">
+      <div class="page-header__card">
+        <h1>Contacto</h1>
+        <ul class="contact-list">
+          {
+            contactos.map((c) => (
+              <li>
+                <a href={c.href} target="_blank" rel="noopener noreferrer">
+                  <span class="contact-list__icon" aria-hidden="true">
+                    {c.icono === "instagram" && (
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8" />
+                        <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" />
+                        <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" />
+                      </svg>
+                    )}
+                    {c.icono === "mail" && (
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" stroke="currentColor" stroke-width="1.8" />
+                        <path d="M3.5 6.5L12 13L20.5 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    )}
+                    {c.icono === "whatsapp" && (
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12 3a9 9 0 0 0-7.75 13.55L3 21l4.6-1.2A9 9 0 1 0 12 3z"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M8.3 8.4c.2-.5.5-.5.7-.5h.5c.2 0 .4 0 .6.4.2.5.6 1.5.7 1.6.1.1.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.2.3.9 1.4 1.9 2.3 1.3 1.2 2.1 1.5 2.4 1.7.3.2.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.9.3.1.5.2.5.3 0 .2 0 .9-.4 1.4-.4.5-1.2 1-2.1 1-1.6.1-3.4-.6-4.9-2-1.5-1.4-2.4-3-2.6-3.4-.2-.4-1.1-1.8-1-3.4 0-.6.3-1.2.6-1.6z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    )}
+                  </span>
+                  <span class="contact-list__text">
+                    <strong>{c.nombre}</strong>
+                    {c.valor}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    display: grid;
+    min-height: 24rem;
+    overflow: hidden;
+  }
+
+  .page-header__photo {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .page-header__scrim {
+    grid-area: 1 / 1;
+    background: linear-gradient(
+      100deg,
+      rgba(4, 12, 20, 0.4) 0%,
+      rgba(4, 12, 20, 0.1) 55%
+    );
+  }
+
+  .page-header__content {
+    grid-area: 1 / 1;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .page-header__card {
+    background: var(--color-white);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(4, 12, 20, 0.25);
+    width: 100%;
+    max-width: 26rem;
+  }
+
+  .page-header h1 {
+    margin: 0 0 1.25rem;
+  }
+
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .contact-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .contact-list__icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-blue-100);
+    color: var(--color-navy-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-list__icon svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .contact-list__text {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+  }
+
+  .contact-list__text strong {
+    font-family: var(--font-base);
+    font-size: 1rem;
+  }
+
+  @media (min-width: 800px) {
+    .page-header {
+      min-height: 26rem;
+    }
+
+    .page-header__content {
+      justify-content: flex-end;
+    }
+
+    .page-header__card {
+      padding: 2.5rem 3rem;
+    }
+  }
+</style>

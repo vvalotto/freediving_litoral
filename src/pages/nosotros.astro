@@ -2,31 +2,138 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TeamGrid from "../components/TeamGrid.astro";
 import AthletesGrid from "../components/AthletesGrid.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Nosotros">
-  <div class="container section">
-    <h1>Nosotros</h1>
-    <p>
-      Freediving Litoral es una escuela de apnea habilitada por la FAAS (Federación Argentina
-      de Actividades Subacuáticas) para la formación de apneistas. Nuestro instructor principal,
-      Raúl Urquiza, está certificado en niveles I y II para Freediving Indoor y Outdoor, y lo
-      acompaña un equipo de instructores de nivel I Indoor.
-    </p>
-    <p>
-      Entrenamos en pileta, en el mar y en lagunas con visibilidad — nunca en el río. El
-      Freediving (Buceo Libre o Apnea Deportiva) consiste en la suspensión voluntaria de la
-      respiración en el agua, combinando técnica, eficiencia hidrodinámica, control mental y
-      relajación.
-    </p>
-    <h2>A quién está dirigido</h2>
-    <ul>
-      <li>Principiantes y público general que buscan salud física y mental.</li>
-      <li>Nadadores de competición y triatletas, para mejorar hidrodinámica y tolerancia a la hipercapnia.</li>
-      <li>Guardavidas y personal de rescate, con técnicas avanzadas de rescate en apnea.</li>
-      <li>Buzos scuba y deportistas de otras disciplinas acuáticas.</li>
-    </ul>
-  </div>
+  <section class="page-header">
+    <img
+      class="page-header__photo"
+      src={`${base}images/gallery/grupo-equipo-san-isidro.jpeg`}
+      alt="Equipo de Freediving Litoral en competencia en San Isidro"
+    />
+    <div class="page-header__scrim"></div>
+    <div class="container page-header__content">
+      <div class="page-header__text">
+        <h1>Nosotros</h1>
+        <p>
+          Freediving Litoral es una escuela de apnea habilitada por la FAAS (Federación
+          Argentina de Actividades Subacuáticas) para la formación de apneistas. Nuestro
+          instructor principal, Raúl Urquiza, está certificado en niveles I y II para
+          Freediving Indoor y Outdoor, y lo acompaña un equipo de instructores de nivel I
+          Indoor.
+        </p>
+        <p>
+          Entrenamos en pileta, en el mar y en lagunas con visibilidad — nunca en el río. El
+          Freediving (Buceo Libre o Apnea Deportiva) consiste en la suspensión voluntaria de
+          la respiración en el agua, combinando técnica, eficiencia hidrodinámica, control
+          mental y relajación.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="section audience">
+    <img
+      class="audience__photo"
+      src={`${base}images/gallery/buceador-superficie-luz.jpg`}
+      alt=""
+    />
+    <div class="audience__scrim"></div>
+    <div class="container audience__content">
+      <h2>A quién está dirigido</h2>
+      <ul>
+        <li>Principiantes y público general que buscan salud física y mental.</li>
+        <li>Nadadores de competición y triatletas, para mejorar hidrodinámica y tolerancia a la hipercapnia.</li>
+        <li>Guardavidas y personal de rescate, con técnicas avanzadas de rescate en apnea.</li>
+        <li>Buzos scuba y deportistas de otras disciplinas acuáticas.</li>
+      </ul>
+    </div>
+  </section>
   <TeamGrid />
   <AthletesGrid />
 </BaseLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    display: grid;
+    min-height: 24rem;
+    overflow: hidden;
+  }
+
+  .page-header__photo {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+
+  .page-header__scrim {
+    grid-area: 1 / 1;
+    background: linear-gradient(
+      100deg,
+      rgba(4, 12, 20, 0.85) 0%,
+      rgba(4, 12, 20, 0.65) 45%,
+      rgba(4, 12, 20, 0.25) 100%
+    );
+  }
+
+  .page-header__content {
+    grid-area: 1 / 1;
+    align-self: center;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .page-header__text {
+    max-width: 40rem;
+  }
+
+  .page-header h1 {
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .page-header__text p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 1rem;
+  }
+
+  .page-header__text p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 800px) {
+    .page-header {
+      min-height: 26rem;
+    }
+  }
+
+  .audience {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .audience__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+
+  .audience__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.88);
+  }
+
+  .audience__content {
+    position: relative;
+  }
+</style>
