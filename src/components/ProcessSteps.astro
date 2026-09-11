@@ -1,16 +1,25 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const steps = [
   {
     titulo: "Curso Inicial (1 mes, 8 sesiones)",
     texto: "Dos clases semanales de 3 horas (teoría + práctica en pileta): fisiología, seguridad, apnea estática y dinámica, hasta la evaluación final.",
+    foto: "nado-dinamico-grupal.jpeg",
+    alt: "Alumnos aprendiendo apnea dinámica en pileta",
   },
   {
     titulo: "Grupo de Entrenamiento Continuo",
     texto: "Entrenamiento anual, 2 días por semana, con periodización, técnica refinada y evaluaciones periódicas de marcas personales.",
+    foto: "apnea-monoaleta-accion.jpeg",
+    alt: "Apneísta entrenando técnica con monoaleta",
   },
   {
     titulo: "Competencia",
     texto: "Preparación y participación en torneos nacionales e internacionales de apnea estática y dinámica (AIDA / CMAS).",
+    foto: "podio-amarillo-escuela-cetaceos.jpg",
+    alt: "Podio de campeonato de apnea",
+    posicion: "22%",
   },
 ];
 ---
@@ -23,14 +32,18 @@ const steps = [
     </p>
     <div class="process__list">
       {
-        steps.map((step, i) => (
-          <details class="process__item" open={i === 0}>
-            <summary>
-              <span>{step.titulo}</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </summary>
+        steps.map((step) => (
+          <div class="process__item">
+            <img
+              class="process__photo"
+              src={`${base}images/gallery/${step.foto}`}
+              alt={step.alt}
+              loading="lazy"
+              style={step.posicion ? `object-position: center ${step.posicion};` : undefined}
+            />
+            <h3>{step.titulo}</h3>
             <p>{step.texto}</p>
-          </details>
+          </div>
         ))
       }
     </div>
@@ -54,45 +67,40 @@ const steps = [
   }
 
   .process__list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    max-width: 640px;
+    display: grid;
+    gap: 1.5rem;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
   .process__item {
     background: var(--color-blue-100);
     border-radius: 0.9rem;
-    padding: 1rem 1.25rem;
+    padding: 1.25rem;
   }
 
-  .process__item summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    font-weight: 600;
+  .process__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.65rem;
+    margin-bottom: 1rem;
+  }
+
+  .process__item h3 {
     font-size: 1.05rem;
-    list-style: none;
-  }
-
-  .process__item summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .process__item summary svg {
-    width: 1.1rem;
-    height: 1.1rem;
-    transition: transform 0.2s ease;
-  }
-
-  .process__item[open] summary svg {
-    transform: rotate(180deg);
+    margin: 0 0 0.5rem;
   }
 
   .process__item p {
-    margin: 0.75rem 0 0.25rem;
+    margin: 0;
     color: var(--color-navy-700);
+  }
+
+  @media (min-width: 700px) {
+    .process__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>

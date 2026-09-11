@@ -3,14 +3,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
 
-const fotos = [
-  { archivo: "entrenamiento-pileta-dinamica.jpeg", alt: "Alumnos entrenando apnea dinámica en pileta" },
-  { archivo: "entrenamiento-nocturno-monoaletas.jpeg", alt: "Instructor con alumnos usando monoaleta, entrenamiento nocturno" },
-  { archivo: "estiramiento-grupal.jpeg", alt: "Grupo haciendo estiramiento previo al entrenamiento" },
-  { archivo: "equipo-piscina-profunda.jpeg", alt: "Equipo en piscina de entrenamiento profundo" },
-  { archivo: "equipo-trajes-neopreno.jpeg", alt: "Equipo de instructores con trajes de neopreno" },
-  { archivo: "equipo-centro-buceo.jpeg", alt: "Equipo en el centro de buceo" },
-  { archivo: "equipo-pileta-cubierta.jpeg", alt: "Grupo en pileta cubierta" },
+const secciones = [
+  {
+    titulo: "En el agua",
+    fotos: [
+      { archivo: "buceador-rayos-luz.jpg", alt: "Buceador nadando entre rayos de luz bajo el agua" },
+      { archivo: "buceador-ascenso-luz.jpg", alt: "Buceador ascendiendo hacia la luz de superficie" },
+      { archivo: "buceador-cabo-profundidad.jpg", alt: "Buceador en profundidad junto al cabo de descenso" },
+      { archivo: "buceador-superficie-luz.jpg", alt: "Buceador mirando hacia la luz de la superficie" },
+      { archivo: "retrato-mascara-apnea.jpg", alt: "Retrato de un apneísta con máscara bajo el agua" },
+      { archivo: "arrecife-tropical-peces.jpg", alt: "Arrecife tropical con peces de colores" },
+    ],
+  },
+  {
+    titulo: "Entrenamiento",
+    fotos: [
+      { archivo: "entrenamiento-pileta-dinamica.jpeg", alt: "Alumnos entrenando apnea dinámica en pileta" },
+      { archivo: "entrenamiento-nocturno-monoaletas.jpeg", alt: "Instructor con alumnos usando monoaleta, entrenamiento nocturno" },
+      { archivo: "instructor-alumno-tecnica.jpeg", alt: "Instructor corrigiendo la técnica de un alumno en pileta" },
+      { archivo: "nado-dinamico-grupal.jpeg", alt: "Grupo nadando apnea dinámica en pileta" },
+      { archivo: "apnea-monoaleta-accion.jpeg", alt: "Apneísta nadando con monoaleta" },
+      { archivo: "senal-ok-seguridad.jpg", alt: "Buceador haciendo la señal de OK como protocolo de seguridad" },
+      { archivo: "estiramiento-grupal.jpeg", alt: "Grupo haciendo estiramiento previo al entrenamiento" },
+      { archivo: "equipo-piscina-profunda.jpeg", alt: "Equipo en piscina de entrenamiento profundo" },
+    ],
+  },
+  {
+    titulo: "Equipo y comunidad",
+    fotos: [
+      { archivo: "equipo-trajes-neopreno.jpeg", alt: "Equipo de instructores con trajes de neopreno" },
+      { archivo: "equipo-centro-buceo.jpeg", alt: "Equipo en el centro de buceo" },
+      { archivo: "equipo-pileta-cubierta.jpeg", alt: "Grupo en pileta cubierta" },
+      { archivo: "salida-mar-abierto.jpg", alt: "Salida en bote a mar abierto con el equipo" },
+      { archivo: "competencia-internacional.jpeg", alt: "Equipo en competencia internacional de apnea" },
+    ],
+  },
+  {
+    titulo: "Logros",
+    fotos: [
+      { archivo: "podio-campeonato-cmas.jpg", alt: "Podio de campeonato con banner de CMAS" },
+      { archivo: "ceremonia-entrega-medallas.jpeg", alt: "Ceremonia de entrega de medallas y certificados" },
+      { archivo: "logro-equipo-certificados.jpg", alt: "Equipo con medallas y certificados de competencia" },
+    ],
+  },
 ];
 ---
 
@@ -18,22 +53,34 @@ const fotos = [
   <div class="container section">
     <h1>Galería</h1>
     <p>Fotos de entrenamientos, salidas y del equipo de instructores.</p>
-    <div class="gallery-grid">
-      {
-        fotos.map((foto) => (
-          <img src={`${base}images/gallery/${foto.archivo}`} alt={foto.alt} loading="lazy" />
-        ))
-      }
-    </div>
+    {
+      secciones.map((seccion) => (
+        <div class="gallery-section">
+          <h2>{seccion.titulo}</h2>
+          <div class="gallery-grid">
+            {seccion.fotos.map((foto) => (
+              <img src={`${base}images/gallery/${foto.archivo}`} alt={foto.alt} loading="lazy" />
+            ))}
+          </div>
+        </div>
+      ))
+    }
   </div>
 </BaseLayout>
 
 <style>
+  .gallery-section {
+    margin-top: 2.5rem;
+  }
+
+  .gallery-section h2 {
+    margin-bottom: 1rem;
+  }
+
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin-top: 2rem;
   }
 
   .gallery-grid img {

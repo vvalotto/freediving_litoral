@@ -2,17 +2,21 @@
 const base = import.meta.env.BASE_URL;
 
 const equipo = [
-  { nombre: "Dr. José Clementi", rol: "Instructor certificado Freediving Indoor y Safety FAAS/CMAS", foto: "jose-clementi.png" },
-  { nombre: "Ing. Victor Valotto", rol: "Instructor certificado Freediving Indoor y Safety FAAS/CMAS", foto: "victor-valotto.png" },
-  { nombre: "Raúl Urquiza", rol: "Instructor de Freediving", foto: "raul-urquiza.png" },
-  { nombre: "Cristina Vázquez", rol: "Instructora de Freediving", foto: "cristina-vazquez.png" },
+  { nombre: "Raúl Urquiza", rol: "Instructor principal, niveles I y II Indoor/Outdoor · Juez de competencia", foto: "raul-urquiza.png" },
+  { nombre: "Cristina Figueroa", rol: "Instructora nivel I Indoor · Jueza de competencia", foto: "cristina-figueroa.png" },
+  { nombre: "Dr. José Clementi", rol: "Instructor nivel I Indoor", foto: "jose-clementi.png" },
+  { nombre: "Ing. Victor Valotto", rol: "Instructor nivel I Indoor", foto: "victor-valotto.png" },
 ];
 ---
 
 <section class="section team">
   <div class="container">
     <h2>Nuestro equipo</h2>
-    <p class="team__lead">Cuatro instructores de niveles I y II, para Freediving Indoor y Outdoor.</p>
+    <p class="team__lead">
+      Todos somos apneistas certificados en niveles I y II Indoor/Outdoor y apneístas de
+      seguridad. Raúl Urquiza es nuestro instructor principal; junto a Cristina Figueroa,
+      también se desempeñan como jueces de competencia.
+    </p>
     <div class="team__grid">
       {
         equipo.map((persona) => (

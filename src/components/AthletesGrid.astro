@@ -1,0 +1,67 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const atletas = [
+  { nombre: "Pablo Sale", rol: "Atleta de competición", foto: "pablo-sale.png" },
+  { nombre: "Martín Andreoli", rol: "Atleta de competición", foto: "martin-andreoli.png" },
+  { nombre: "Valentina", rol: "Atleta de competición", foto: "valentina.png" },
+];
+---
+
+<section class="section athletes">
+  <div class="container">
+    <h2>Nuestros atletas</h2>
+    <p class="athletes__lead">Compiten representando a Freediving Litoral en torneos nacionales e internacionales.</p>
+    <div class="athletes__grid">
+      {
+        atletas.map((persona) => (
+          <div class="athletes__card">
+            <img src={`${base}images/team/${persona.foto}`} alt={persona.nombre} />
+            <h3>{persona.nombre}</h3>
+            <p>{persona.rol}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .athletes__lead {
+    color: var(--color-text-muted);
+    max-width: 60ch;
+  }
+
+  .athletes__grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .athletes__card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .athletes__card h3 {
+    font-family: var(--font-base);
+    font-size: 1.05rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .athletes__card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 700px) {
+    .athletes__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

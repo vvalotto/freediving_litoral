@@ -14,19 +14,15 @@ const base = import.meta.env.BASE_URL;
       <svg class="welcome__shape welcome__shape--wave" viewBox="0 0 120 40" aria-hidden="true">
         <path d="M0 20 Q 15 5, 30 20 T 60 20 T 90 20 T 120 20" fill="none" stroke="var(--color-blue-400)" stroke-width="3" stroke-linecap="round"/>
       </svg>
-      <svg class="welcome__shape welcome__shape--circle" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="var(--color-navy-900)" stroke-width="3"/>
-      </svg>
     </div>
     <div class="welcome__copy">
       <p class="eyebrow eyebrow--script">¡Hola!</p>
       <h2>Bienvenidos a Freediving Litoral</h2>
       <p>
         Somos una escuela de apnea habilitada por la FAAS (Federación Argentina de Actividades
-        Subacuáticas) para la formación de apneistas. Nos presentan el Dr. José Clementi y el
-        Ing. Victor Valotto, instructores certificados de Freediving Indoor y Safeties
-        FAAS/CMAS, junto a un equipo de cuatro instructores de niveles I y II para Freediving
-        Indoor y Outdoor.
+        Subacuáticas) para la formación de apneistas. Nos guía Raúl Urquiza, nuestro instructor
+        principal certificado en niveles I y II para Freediving Indoor y Outdoor, junto a un
+        equipo de instructores de nivel I Indoor.
       </p>
       <a class="btn btn--solid" href={`${base}nosotros`}>Nuestro método</a>
     </div>
@@ -84,13 +80,6 @@ const base = import.meta.env.BASE_URL;
     width: 90px;
     bottom: -0.5rem;
     left: -0.5rem;
-  }
-
-  .welcome__shape--circle {
-    width: 70px;
-    top: -1.5rem;
-    right: 1.5rem;
-    opacity: 0.6;
   }
 
   .welcome__copy h2 {
