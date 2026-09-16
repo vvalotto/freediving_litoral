@@ -8,17 +8,22 @@ const base = import.meta.env.BASE_URL;
     src={`${base}images/gallery/buceador-rayos-luz.jpg`}
     alt="Buceador nadando entre rayos de luz bajo el agua"
   />
-  <div class="hero__scrim"></div>
   <div class="container hero__content">
-    <p class="eyebrow">Escuela de Apnea · Habilitada por FAAS</p>
-    <h1>Explorá tus límites bajo el agua</h1>
-    <p class="hero__lead">
-      Formación de apneistas con estándares de seguridad internacional. Entrenamos en pileta,
-      mar y lagunas con visibilidad, con foco en técnica, seguridad y progreso real.
-    </p>
-    <div class="hero__actions">
-      <a class="btn btn--solid" href={`${base}cursos`}>Ver cursos</a>
-      <a class="btn btn--outline" href={`${base}nosotros`}>Conocenos</a>
+    <div class="hero__panel">
+      <p class="eyebrow">Escuela de Apnea · Habilitada por FAAS</p>
+      <h1>
+        <span>Explorá</span>
+        <span>tus límites</span>
+        <span>bajo el agua</span>
+      </h1>
+      <p class="hero__lead">
+        Formación de apneistas con estándares de seguridad internacional. Entrenamos en pileta,
+        mar y lagunas con visibilidad, con foco en técnica, seguridad y progreso real.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href={`${base}cursos`}>Ver cursos</a>
+        <a class="btn btn--outline" href={`${base}nosotros`}>Conocenos</a>
+      </div>
     </div>
   </div>
 </section>
@@ -40,21 +45,18 @@ const base = import.meta.env.BASE_URL;
     display: block;
   }
 
-  .hero__scrim {
-    grid-area: 1 / 1;
-    background: linear-gradient(
-      100deg,
-      rgba(4, 12, 20, 0.88) 0%,
-      rgba(4, 12, 20, 0.72) 32%,
-      rgba(4, 12, 20, 0.32) 60%,
-      rgba(4, 12, 20, 0.1) 100%
-    );
-  }
-
   .hero__content {
     grid-area: 1 / 1;
     align-self: center;
-    padding-block: 4rem;
+    padding-block: 3rem;
+  }
+
+  .hero__panel {
+    display: inline-block;
+    background: rgba(11, 37, 69, 0.62);
+    backdrop-filter: blur(2px);
+    padding: 2rem 1.75rem;
+    border-radius: 0.5rem;
     color: #fff;
   }
 
@@ -64,14 +66,21 @@ const base = import.meta.env.BASE_URL;
 
   .hero h1 {
     color: #fff;
-    font-size: clamp(2.2rem, 4vw, 3.6rem);
-    margin: 0.4rem 0 1rem;
-    max-width: 16ch;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  .hero h1 span {
+    display: block;
   }
 
   .hero__lead {
-    max-width: 48ch;
-    color: rgba(255, 255, 255, 0.82);
+    max-width: 42ch;
+    color: rgba(255, 255, 255, 0.85);
     font-size: clamp(1.05rem, 1.3vw, 1.25rem);
   }
 
@@ -85,5 +94,11 @@ const base = import.meta.env.BASE_URL;
   .hero .btn--outline {
     border-color: rgba(255, 255, 255, 0.6);
     color: #fff;
+  }
+
+  @media (min-width: 800px) {
+    .hero__panel {
+      padding: 3rem 3.5rem;
+    }
   }
 </style>

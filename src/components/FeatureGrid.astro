@@ -7,24 +7,28 @@ const disciplinas = [
     texto: "Control de la respiración y la mente en superficie: la base de todo entrenamiento de apnea.",
     foto: "instructores-alumnos-pileta-cubierta.jpg",
     alt: "Instructor cronometrando a un alumno en apnea estática",
+    slug: "sta",
   },
   {
     titulo: "Dinámica sin Aletas (DNF)",
     texto: "Control de flotabilidad, posición corporal y técnica de brazada y pateo de pecho bajo el agua.",
     foto: "dnf.png",
     alt: "Apneísta nadando dinámica sin aletas",
+    slug: "dnf",
   },
   {
     titulo: "Dinámica con Monoaleta (DYN)",
     texto: "Distancia en desplazamiento con monoaleta, con protocolos de seguridad activa.",
     foto: "buceador-monoaleta-centrado.jpg",
     alt: "Apneísta nadando con monoaleta en pileta",
+    slug: "dyn",
   },
   {
     titulo: "Dinámica con Aletas (DYNB)",
     texto: "Distancia en desplazamiento con aletas separadas, con protocolos de seguridad activa.",
     foto: "dynb.jpg",
     alt: "Apneísta nadando con aletas separadas en pileta",
+    slug: "dynb",
   },
 ];
 ---
@@ -35,7 +39,7 @@ const disciplinas = [
     <div class="feature-grid__list">
       {
         disciplinas.map((d) => (
-          <div class="feature-grid__item">
+          <a class="feature-grid__item" href={`${base}disciplinas/${d.slug}`}>
             <img
               class="feature-grid__photo"
               src={`${base}images/gallery/${d.foto}`}
@@ -45,7 +49,7 @@ const disciplinas = [
             />
             <h3>{d.titulo}</h3>
             <p>{d.texto}</p>
-          </div>
+          </a>
         ))
       }
     </div>
@@ -67,6 +71,16 @@ const disciplinas = [
     display: grid;
     gap: 1.75rem;
     margin-top: 2.5rem;
+  }
+
+  .feature-grid__item {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+
+  .feature-grid__item:hover {
+    transform: translateY(-3px);
   }
 
   .feature-grid__photo {

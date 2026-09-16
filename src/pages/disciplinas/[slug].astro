@@ -1,0 +1,241 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const disciplinas = await getCollection("disciplinas");
+  return disciplinas.map((disciplina) => ({
+    params: { slug: disciplina.id },
+    props: { disciplina },
+  }));
+}
+
+const { disciplina } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={`${disciplina.data.titulo} (${disciplina.data.sigla})`}>
+  <section class="page-header">
+    <img
+      class="page-header__photo"
+      src={`${base}images/gallery/${disciplina.data.fotoPortada}`}
+      alt={disciplina.data.fotoPortadaAlt}
+    />
+    <div class="page-header__scrim"></div>
+    <div class="container page-header__content">
+      <div class="page-header__text">
+        <p class="eyebrow">Disciplina · {disciplina.data.sigla}</p>
+        <h1>{disciplina.data.titulo}</h1>
+        <p class="page-header__lead">{disciplina.data.resumen}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container section discipline">
+    <div class="discipline__intro">
+      {disciplina.data.introduccion.map((parrafo) => <p>{parrafo}</p>)}
+    </div>
+
+    <ul class="discipline__chips">
+      {disciplina.data.destacados.map((item) => <li>{item}</li>)}
+    </ul>
+
+    <div class="discipline__accordion">
+      {
+        disciplina.data.secciones.map((seccion, i) => (
+          <div class={`acc-item acc-item--tone${i % 2}`}>
+            <input type="checkbox" id={`sec-${i}`} class="acc-toggle" checked={i === 0} />
+            <label for={`sec-${i}`} class="acc-header">
+              <span>{seccion.titulo}</span>
+              <svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </label>
+            <div class="acc-body-wrap">
+              <div class="acc-body">
+                {seccion.parrafos.map((parrafo) => <p>{parrafo}</p>)}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="container section discipline-cta">
+    <a class="btn btn--solid" href={`${base}cursos`}>Ver cursos</a>
+    <a class="btn btn--outline" href={`${base}nosotros`}>Conocé al equipo</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    overflow: hidden;
+    padding-block: 3rem;
+  }
+
+  .page-header__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  .page-header__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(4, 12, 20, 0.85) 0%,
+      rgba(4, 12, 20, 0.6) 45%,
+      rgba(4, 12, 20, 0.2) 100%
+    );
+  }
+
+  .page-header__content {
+    position: relative;
+  }
+
+  .page-header__text {
+    max-width: 40rem;
+  }
+
+  .page-header .eyebrow {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .page-header h1 {
+    color: #fff;
+    margin: 0.4rem 0 1rem;
+  }
+
+  .page-header__lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  @media (min-width: 800px) {
+    .page-header {
+      padding-block: 4.5rem;
+    }
+  }
+
+  .discipline {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+
+  .discipline__intro {
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--color-navy-700);
+  }
+
+  .discipline__intro p {
+    margin: 0 0 1.1rem;
+  }
+
+  .discipline__chips {
+    list-style: none;
+    margin: 1.5rem 0 2.5rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .discipline__chips li {
+    background: var(--color-blue-100);
+    color: var(--color-navy-900);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .discipline__accordion {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .acc-item {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .acc-item--tone0 {
+    background: rgba(79, 163, 209, 0.12);
+  }
+
+  .acc-item--tone1 {
+    background: rgba(11, 37, 69, 0.06);
+  }
+
+  .acc-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .acc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-family: var(--font-base);
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--color-navy-900);
+  }
+
+  .acc-chevron {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .acc-toggle:checked + .acc-header .acc-chevron {
+    transform: rotate(180deg);
+  }
+
+  .acc-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+
+  .acc-toggle:checked ~ .acc-body-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .acc-body {
+    overflow: hidden;
+  }
+
+  .acc-body p {
+    margin: 0 0 1rem 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--color-navy-700);
+    line-height: 1.65;
+  }
+
+  .acc-body p:last-child {
+    margin-bottom: 1.5rem;
+  }
+
+  .discipline-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+</style>
