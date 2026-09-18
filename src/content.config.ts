@@ -8,6 +8,12 @@ const cursos = defineCollection({
     nivel: z.string().optional(),
     duracion: z.string().optional(),
     resumen: z.string(),
+    destacados: z.array(z.string()).optional(),
+    introduccion: z.array(z.string()).optional(),
+    secciones: z.array(z.object({ titulo: z.string(), parrafos: z.array(z.string()) })).optional(),
+    requisitos: z.string().optional(),
+    fotoPortada: z.string().optional(),
+    fotoPortadaAlt: z.string().optional(),
     orden: z.number().optional(),
   }),
 });
