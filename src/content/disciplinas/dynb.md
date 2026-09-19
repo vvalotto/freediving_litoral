@@ -22,12 +22,5 @@ secciones:
       - "Como en toda disciplina dinámica, un safety diver acompaña el recorrido y está atento a la recuperación al finalizar la apnea."
 fotoPortada: "dynb.jpg"
 fotoPortadaAlt: "Apneísta nadando con aletas separadas en pileta"
-fotos:
-  - archivo: "buceador-aletas-dinamica.png"
-    alt: "Apneísta descendiendo con aletas separadas"
-  - archivo: "buceador-aletas-salida.png"
-    alt: "Apneísta en salida con aletas separadas"
-  - archivo: "buceadora-aletas-estiramiento-pileta.jpg"
-    alt: "Apneísta estirando con aletas separadas en el borde de la pileta"
 orden: 4
 ---

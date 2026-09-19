@@ -22,12 +22,5 @@ secciones:
       - "El protocolo de seguridad es estricto: un instructor o safety diver permanece junto al apneísta durante todo el ejercicio, atento a señales de samba (pérdida de control motor) o blackout, con protocolos de asistencia inmediata."
 fotoPortada: "instructores-alumnos-pileta-cubierta.jpg"
 fotoPortadaAlt: "Instructor cronometrando a un alumno en apnea estática"
-fotos:
-  - archivo: "apnea-estatica-pileta.jpeg"
-    alt: "Apneísta en apnea estática en pileta"
-  - archivo: "buceador-estatica-pileta-oscura.jpg"
-    alt: "Apneísta flotando inmóvil en pileta"
-  - archivo: "pileta-competencia-bahia-diving.jpg"
-    alt: "Competidor de apnea estática en pileta de competencia"
 orden: 1
 ---

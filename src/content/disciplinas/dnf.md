@@ -22,12 +22,5 @@ secciones:
       - "Como en toda disciplina dinámica, un safety diver acompaña el recorrido o espera en el punto de llegada, atento a la recuperación del apneísta al finalizar."
 fotoPortada: "dnf.png"
 fotoPortadaAlt: "Apneísta nadando dinámica sin aletas"
-fotos:
-  - archivo: "nado-dinamico-grupal.jpeg"
-    alt: "Alumnos aprendiendo apnea dinámica en pileta"
-  - archivo: "nado-dinamico-grupal-2.jpeg"
-    alt: "Grupo nadando apnea dinámica en pileta"
-  - archivo: "entrenamiento-pileta-dinamica.jpeg"
-    alt: "Entrenamiento de apnea dinámica en pileta"
 orden: 2
 ---

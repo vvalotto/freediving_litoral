@@ -18,16 +18,6 @@ const cursos = defineCollection({
   }),
 });
 
-const blog = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
-  schema: z.object({
-    titulo: z.string(),
-    fecha: z.date(),
-    resumen: z.string(),
-    autor: z.string().optional(),
-  }),
-});
-
 const disciplinas = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/disciplinas" }),
   schema: z.object({
@@ -39,9 +29,8 @@ const disciplinas = defineCollection({
     secciones: z.array(z.object({ titulo: z.string(), parrafos: z.array(z.string()) })),
     fotoPortada: z.string(),
     fotoPortadaAlt: z.string(),
-    fotos: z.array(z.object({ archivo: z.string(), alt: z.string() })),
     orden: z.number().optional(),
   }),
 });
 
-export const collections = { cursos, blog, disciplinas };
+export const collections = { cursos, disciplinas };

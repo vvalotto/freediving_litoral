@@ -22,12 +22,5 @@ secciones:
       - "El acompañamiento de un safety diver durante el recorrido es central, con atención especial a la fatiga muscular, propia del esfuerzo prolongado de esta disciplina."
 fotoPortada: "buceador-monoaleta-centrado.jpg"
 fotoPortadaAlt: "Apneísta nadando con monoaleta en pileta"
-fotos:
-  - archivo: "buceador-monoaleta-dinamica.png"
-    alt: "Apneísta nadando con monoaleta en acción"
-  - archivo: "buceadora-monoaleta-amarilla.png"
-    alt: "Apneísta con monoaleta amarilla en pileta"
-  - archivo: "retrato-instructor-monoaleta.jpg"
-    alt: "Instructor con monoaleta"
 orden: 3
 ---
