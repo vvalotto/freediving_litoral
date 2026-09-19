@@ -20,7 +20,7 @@ secciones:
     parrafos:
       - "DNF es ideal para quienes vienen de la natación y quieren trasladar esa base técnica al mundo de la apnea, y para todo apneísta que busque perfeccionar el control corporal antes de sumar el desafío extra de nadar con aletas."
       - "Como en toda disciplina dinámica, un safety diver acompaña el recorrido o espera en el punto de llegada, atento a la recuperación del apneísta al finalizar."
-fotoPortada: "entrenamiento/dnf.png"
+fotoPortada: "entrenamiento/DNF-2.png"
 fotoPortadaAlt: "Apneísta nadando dinámica sin aletas"
 orden: 2
 ---
