@@ -22,7 +22,7 @@ secciones:
     parrafos:
       - "Hacemos evaluaciones periódicas de marcas personales bajo estándares reglamentarios (AIDA/CMAS), para que cada apneísta pueda seguir su propia evolución a lo largo del año."
 requisitos: "Haber completado el Curso Nivel I Apnea o certificar experiencia previa en apnea."
-fotoPortada: "equipo-aletas-mascara-borde-pileta.jpg"
+fotoPortada: "equipo/equipo-aletas-mascara-borde-pileta.jpg"
 fotoPortadaAlt: "Equipo conversando en el borde de la pileta junto a sus aletas y máscara"
 orden: 2
 ---

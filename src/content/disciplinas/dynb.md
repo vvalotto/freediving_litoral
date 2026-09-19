@@ -20,7 +20,7 @@ secciones:
     parrafos:
       - "DYNB es ideal para buzos, nadadores y deportistas acuáticos que ya están cómodos con aletas separadas y quieren iniciarse en las disciplinas de distancia del freediving, antes de eventualmente sumar la monoaleta."
       - "Como en toda disciplina dinámica, un safety diver acompaña el recorrido y está atento a la recuperación al finalizar la apnea."
-fotoPortada: "dynb.jpg"
+fotoPortada: "entrenamiento/dynb.jpg"
 fotoPortadaAlt: "Apneísta nadando con aletas separadas en pileta"
 orden: 4
 ---

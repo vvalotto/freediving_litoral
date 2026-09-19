@@ -1,0 +1,70 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="faas">
+  <div class="container faas__inner">
+    <a class="faas__logo" href="https://www.faas.org.ar/" target="_blank" rel="noopener">
+      <img
+        src={`${base}images/brand/faas-color.png`}
+        alt="FAAS, Federación Argentina de Actividades Subacuáticas"
+        loading="lazy"
+      />
+    </a>
+    <div class="faas__copy">
+      <h2>Escuela habilitada por la FAAS</h2>
+      <p>
+        Formamos apneístas bajo los estándares de la Federación Argentina de Actividades
+        Subacuáticas.{" "}
+        <a href="https://www.faas.org.ar/" target="_blank" rel="noopener">Conocé la FAAS →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faas {
+    background: #fff;
+    padding-block: 2.5rem;
+  }
+
+  .faas__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .faas__logo img {
+    display: block;
+    width: 150px;
+    height: auto;
+  }
+
+  .faas__copy h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .faas__copy p {
+    margin: 0;
+    color: var(--color-navy-700);
+    max-width: 46ch;
+  }
+
+  .faas__copy a {
+    color: var(--color-navy-700);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 700px) {
+    .faas__inner {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2.5rem;
+      text-align: left;
+    }
+  }
+</style>

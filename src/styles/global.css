@@ -220,6 +220,17 @@ footer.site-footer a:hover {
   max-width: 32ch;
 }
 
+.footer-faas {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.footer-faas img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
 .footer-links h3 {
   font-family: var(--font-base);
   font-size: 0.85rem;

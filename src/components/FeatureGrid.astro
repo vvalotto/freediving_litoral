@@ -5,28 +5,28 @@ const disciplinas = [
   {
     titulo: "Apnea Estática (STA)",
     texto: "Control de la respiración y la mente en superficie: la base de todo entrenamiento de apnea.",
-    foto: "instructores-alumnos-pileta-cubierta.jpg",
+    foto: "entrenamiento/instructores-alumnos-pileta-cubierta.jpg",
     alt: "Instructor cronometrando a un alumno en apnea estática",
     slug: "sta",
   },
   {
     titulo: "Dinámica sin Aletas (DNF)",
     texto: "Control de flotabilidad, posición corporal y técnica de brazada y pateo de pecho bajo el agua.",
-    foto: "dnf.png",
+    foto: "entrenamiento/dnf.png",
     alt: "Apneísta nadando dinámica sin aletas",
     slug: "dnf",
   },
   {
     titulo: "Dinámica con Monoaleta (DYN)",
     texto: "Distancia en desplazamiento con monoaleta, con protocolos de seguridad activa.",
-    foto: "buceador-monoaleta-centrado.jpg",
+    foto: "entrenamiento/buceador-monoaleta-centrado.jpg",
     alt: "Apneísta nadando con monoaleta en pileta",
     slug: "dyn",
   },
   {
     titulo: "Dinámica con Aletas (DYNB)",
     texto: "Distancia en desplazamiento con aletas separadas, con protocolos de seguridad activa.",
-    foto: "dynb.jpg",
+    foto: "entrenamiento/dynb.jpg",
     alt: "Apneísta nadando con aletas separadas en pileta",
     slug: "dynb",
   },
@@ -39,7 +39,7 @@ const disciplinas = [
     <div class="feature-grid__list">
       {
         disciplinas.map((d) => (
-          <a class="feature-grid__item" href={`${base}disciplinas/${d.slug}`}>
+          <div class="feature-grid__item">
             <img
               class="feature-grid__photo"
               src={`${base}images/gallery/${d.foto}`}
@@ -49,7 +49,10 @@ const disciplinas = [
             />
             <h3>{d.titulo}</h3>
             <p>{d.texto}</p>
-          </a>
+            <a class="feature-grid__link" href={`${base}disciplinas/${d.slug}`}>
+              Ver detalle <span aria-hidden="true">→</span>
+            </a>
+          </div>
         ))
       }
     </div>
@@ -73,14 +76,18 @@ const disciplinas = [
     margin-top: 2.5rem;
   }
 
-  .feature-grid__item {
-    display: block;
+  .feature-grid__link {
+    display: inline-block;
+    margin-top: 0.9rem;
+    color: var(--color-blue-400);
+    font-size: 0.95rem;
+    font-weight: 500;
     text-decoration: none;
-    transition: transform 0.15s ease;
   }
 
-  .feature-grid__item:hover {
-    transform: translateY(-3px);
+  .feature-grid__link:hover {
+    color: var(--color-white);
+    text-decoration: underline;
   }
 
   .feature-grid__photo {

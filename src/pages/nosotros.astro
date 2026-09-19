@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL;
   <section class="page-header">
     <img
       class="page-header__photo"
-      src={`${base}images/gallery/grupo-equipo-san-isidro.jpeg`}
+      src={`${base}images/gallery/equipo/grupo-equipo-san-isidro.jpeg`}
       alt="Equipo de Freediving Litoral en competencia en San Isidro"
     />
     <div class="page-header__scrim"></div>
@@ -18,7 +18,7 @@ const base = import.meta.env.BASE_URL;
       <div class="page-header__text">
         <h1>Nosotros</h1>
         <p>
-          Freediving Litoral es una escuela de apnea habilitada por la FAAS (Federación
+          Freediving Litoral es una escuela de apnea habilitada por la <a href="https://www.faas.org.ar/" target="_blank" rel="noopener">FAAS</a> (Federación
           Argentina de Actividades Subacuáticas) para la formación de apneistas. Nuestro
           instructor principal, Raúl Urquiza, está certificado en niveles I y II para
           Freediving Indoor y Outdoor, y lo acompaña un equipo de instructores de nivel I
@@ -36,7 +36,7 @@ const base = import.meta.env.BASE_URL;
   <section class="section audience">
     <img
       class="audience__photo"
-      src={`${base}images/gallery/buceador-superficie-luz.jpg`}
+      src={`${base}images/gallery/bajo-el-agua/buceador-superficie-luz.jpg`}
       alt=""
     />
     <div class="audience__scrim"></div>
@@ -99,6 +99,12 @@ const base = import.meta.env.BASE_URL;
     color: rgba(255, 255, 255, 0.9);
     margin: 0 0 1rem;
     font-size: clamp(1rem, 1.2vw, 1.15rem);
+  }
+
+  .page-header__text a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .page-header__text p:last-child {

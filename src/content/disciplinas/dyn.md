@@ -20,7 +20,7 @@ secciones:
     parrafos:
       - "DYN es el siguiente paso natural para apneístas que ya dominan la técnica dinámica sin aletas y quieren sumar el desafío de un equipo específico, buscando maximizar la distancia recorrida con la propulsión más eficiente del freediving."
       - "El acompañamiento de un safety diver durante el recorrido es central, con atención especial a la fatiga muscular, propia del esfuerzo prolongado de esta disciplina."
-fotoPortada: "buceador-monoaleta-centrado.jpg"
+fotoPortada: "entrenamiento/buceador-monoaleta-centrado.jpg"
 fotoPortadaAlt: "Apneísta nadando con monoaleta en pileta"
 orden: 3
 ---

@@ -20,7 +20,7 @@ secciones:
     parrafos:
       - "Todo apneísta, sin importar a qué disciplina quiera dedicarse después (dinámica, profundidad, competencia), empieza por dominar la apnea estática. Es el punto de partida obligatorio en nuestros cursos: sin control de la respiración y la mente en superficie, no hay progreso seguro bajo el agua."
       - "El protocolo de seguridad es estricto: un instructor o safety diver permanece junto al apneísta durante todo el ejercicio, atento a señales de samba (pérdida de control motor) o blackout, con protocolos de asistencia inmediata."
-fotoPortada: "instructores-alumnos-pileta-cubierta.jpg"
+fotoPortada: "entrenamiento/instructores-alumnos-pileta-cubierta.jpg"
 fotoPortadaAlt: "Instructor cronometrando a un alumno en apnea estática"
 orden: 1
 ---

@@ -29,7 +29,7 @@ secciones:
       - "Teoría: planificación del entrenamiento, nutrición, mentalidad competitiva y reglamentos de torneos (AIDA/CMAS)."
       - "Práctica: evaluación integradora, simulacro de toma de marcas y graduación del curso inicial."
 requisitos: "Apto médico actualizado específico para deportes acuáticos/apnea, y equipo básico: máscara de bajo volumen, snorkel, aletas, traje de neopreno (opcional según temperatura del agua) y cinturón de lastre flexible."
-fotoPortada: "instructor-alumno-tecnica.jpeg"
+fotoPortada: "entrenamiento/instructor-alumno-tecnica.jpeg"
 fotoPortadaAlt: "Instructor corrigiendo la técnica de un alumno en pileta"
 orden: 1
 ---
