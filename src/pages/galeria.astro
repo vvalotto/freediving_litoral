@@ -50,13 +50,11 @@ const secciones = [
       { archivo: "equipo/grupo-equipo-san-isidro.jpeg", alt: "Equipo en la pileta cubierta de San Isidro" },
       { archivo: "equipo/grupo-trajes-neopreno-pileta.jpg", alt: "Grupo con trajes de neopreno en la pileta" },
       { archivo: "equipo/equipo-remeras-institucionales-2.jpg", alt: "Equipo con remeras institucionales junto a la pileta" },
-      { archivo: "equipo/grupo-comision-apnea-faas.jpg", alt: "Encuentro de la Comisión de Apnea de la FAAS" },
       { archivo: "equipo/equipo-fondo-pileta-senales.png", alt: "Equipo bajo el agua haciendo señales de OK" },
       { archivo: "equipo/equipo-aletas-mascara-borde-pileta.jpg", alt: "Equipo conversando en el borde de la pileta junto a sus aletas y máscara" },
       { archivo: "equipo/equipo-descanso-borde-pileta-competencia.jpg", alt: "Integrantes del equipo descansando en el borde de la pileta durante una competencia" },
       { archivo: "equipo/equipo-mirando-pileta-bahia-club.jpg", alt: "Integrantes del equipo mirando la pileta del Bahía Club" },
       { archivo: "equipo/grupo-cuatro-medallas-interior.jpg", alt: "Cuatro integrantes del equipo con sus medallas" },
-      { archivo: "equipo/grupo-medallas-certificados-exterior.jpg", alt: "Grupo con medallas y certificados de la FAAS" },
       { archivo: "equipo/grupo-remeras-azules-certificados.jpg", alt: "Equipo con remeras azules, medallas y certificados" },
       { archivo: "equipo/grupo-remeras-verdes-medallas.jpg", alt: "Grupo con remeras verdes, medallas y certificados" },
       { archivo: "bajo-el-agua/salida-mar-abierto.jpg", alt: "Salida en bote a mar abierto con el equipo" },
@@ -65,24 +63,25 @@ const secciones = [
   },
   {
     titulo: "Logros",
+    vertical: true,
     fotos: [
       { archivo: "competencia/podio-campeonato-cmas.jpg", alt: "Podio de campeonato con banner de CMAS" },
-      { archivo: "competencia/logro-equipo-certificados.jpg", alt: "Equipo con medallas y certificados de competencia" },
-      { archivo: "competencia/podio-competencia-faas.jpg", alt: "Podio de competencia de apnea con banner de la FAAS" },
-      { archivo: "competencia/podio-amarillo-escuela-cetaceos.jpg", alt: "Podio amarillo de competencia con banner de la FAAS" },
-      { archivo: "competencia/podio-casual-tres-competidores.jpeg", alt: "Tres competidores con sus medallas en el podio" },
-      { archivo: "competencia/podio-femenino-tres-competidoras.jpg", alt: "Podio femenino de tres competidoras con sus medallas" },
-      { archivo: "competencia/podio-hue-50-aniversario.jpeg", alt: "Podio de competencia en el torneo del 50 aniversario de la Hermandad Universitaria de los Escualos" },
-      { archivo: "competencia/podio-hue-50-aniversario-2.jpeg", alt: "Podio del torneo del 50 aniversario de la Hermandad Universitaria de los Escualos" },
-      { archivo: "competencia/podio-hue-bahia-blanca.jpg", alt: "Podio con certificados en la competencia de Bahía Blanca" },
-      { archivo: "competencia/podio-hue-banner-faas.jpg", alt: "Podio en Bahía Blanca frente al banner de la FAAS" },
-      { archivo: "competencia/podio-hue-certificados.jpeg", alt: "Podio con certificados en la competencia de Bahía Blanca" },
-      { archivo: "competencia/podio-hue-remeras-azules.jpg", alt: "Podio de tres competidores con remeras azules" },
-      { archivo: "competencia/podio-hue-tres-competidores.jpeg", alt: "Podio de tres competidores en Bahía Blanca" },
-      { archivo: "competencia/podio-premios-faas.jpg", alt: "Podio con premios de la FAAS" },
-      { archivo: "competencia/podio-premios-saphirus.jpg", alt: "Podio con premios de los auspiciantes" },
-      { archivo: "competencia/podio-tres-competidores-exterior.jpg", alt: "Tres competidores con medallas en el podio" },
-      { archivo: "competencia/podio-tres-medallas-pared-blanca.jpg", alt: "Podio de tres competidores con sus medallas" },
+      { archivo: "competencia/logro-equipo-certificados.jpg", alt: "Equipo con medallas y certificados de competencia", ancho: true },
+      { archivo: "competencia/podio-competencia-faas.jpg", alt: "Podio de competencia de apnea con banner de la FAAS", ancho: true },
+      { archivo: "competencia/podio-amarillo-escuela-cetaceos.jpg", alt: "Podio amarillo de competencia con banner de la FAAS", pos: "0%" },
+      { archivo: "competencia/podio-casual-tres-competidores.jpeg", alt: "Tres competidores con sus medallas en el podio", pos: "50%" },
+      { archivo: "competencia/podio-femenino-tres-competidoras.jpg", alt: "Podio femenino de tres competidoras con sus medallas", pos: "0%" },
+      { archivo: "competencia/podio-hue-50-aniversario.jpeg", alt: "Podio de competencia en el torneo del 50 aniversario de la Hermandad Universitaria de los Escualos", pos: "100%" },
+      { archivo: "competencia/podio-hue-50-aniversario-2.jpeg", alt: "Podio del torneo del 50 aniversario de la Hermandad Universitaria de los Escualos", pos: "65%" },
+      { archivo: "competencia/podio-hue-bahia-blanca.jpg", alt: "Podio con certificados en la competencia de Bahía Blanca", pos: "50%" },
+      { archivo: "competencia/podio-hue-banner-faas.jpg", alt: "Podio en Bahía Blanca frente al banner de la FAAS", pos: "50%" },
+      { archivo: "competencia/podio-hue-certificados.jpeg", alt: "Podio con certificados en la competencia de Bahía Blanca", pos: "50%" },
+      { archivo: "competencia/podio-hue-remeras-azules.jpg", alt: "Podio de tres competidores con remeras azules", pos: "0%" },
+      { archivo: "competencia/podio-hue-tres-competidores.jpeg", alt: "Podio de tres competidores en Bahía Blanca", pos: "50%" },
+      { archivo: "competencia/pablo-logro.JPG", alt: "Pablo Sale en lo más alto del podio con la medalla de oro", pos: "50%" },
+      { archivo: "competencia/podio-premios-saphirus.jpg", alt: "Podio con premios de los auspiciantes", pos: "0%" },
+      { archivo: "competencia/podio-tres-competidores-exterior.jpg", alt: "Tres competidores con medallas en el podio", pos: "0%" },
+      { archivo: "competencia/podio-tres-medallas-pared-blanca.jpg", alt: "Podio de tres competidores con sus medallas", pos: "30%" },
     ],
   },
 ];
@@ -96,9 +95,15 @@ const secciones = [
       secciones.map((seccion) => (
         <div class="gallery-section">
           <h2>{seccion.titulo}</h2>
-          <div class="gallery-grid">
+          <div class:list={["gallery-grid", { "gallery-grid--vertical": seccion.vertical }]}>
             {seccion.fotos.map((foto) => (
-              <img src={`${base}images/gallery/${foto.archivo}`} alt={foto.alt} loading="lazy" />
+              <img
+                src={`${base}images/gallery/${foto.archivo}`}
+                alt={foto.alt}
+                loading="lazy"
+                class={foto.ancho ? "wide" : undefined}
+                style={foto.pos ? `object-position: center ${foto.pos};` : undefined}
+              />
             ))}
           </div>
         </div>
@@ -127,6 +132,19 @@ const secciones = [
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 0.75rem;
+  }
+
+  .gallery-grid--vertical {
+    grid-auto-flow: dense;
+  }
+
+  .gallery-grid--vertical img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .gallery-grid--vertical img.wide {
+    grid-column: span 2;
+    aspect-ratio: 1.55 / 1;
   }
 
   @media (min-width: 700px) {
