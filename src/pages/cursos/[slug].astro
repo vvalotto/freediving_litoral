@@ -1,0 +1,526 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const cursos = (await getCollection("cursos")).sort(
+    (a, b) => (a.data.orden ?? 0) - (b.data.orden ?? 0)
+  );
+  const niveles = cursos.filter((curso) => curso.data.categoria === "certificacion");
+  return cursos.map((curso) => {
+    const i = niveles.indexOf(curso);
+    return {
+      params: { slug: curso.id },
+      props: {
+        curso,
+        anterior: i > 0 ? niveles[i - 1] : undefined,
+        siguiente: i >= 0 ? niveles[i + 1] : undefined,
+      },
+    };
+  });
+}
+
+const { curso, anterior, siguiente } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const d = curso.data;
+
+const ficha = [
+  { etiqueta: "Certificación", valor: d.certificacion },
+  { etiqueta: "Edad mínima", valor: d.edadMinima && `${d.edadMinima} años` },
+  { etiqueta: "Requisito previo", valor: d.prerrequisito },
+  { etiqueta: "Duración", valor: d.duracion },
+  { etiqueta: "Profundidad máxima", valor: d.profundidadMaxima },
+].filter((item) => item.valor);
+
+const documentos = [
+  "DNI o pasaporte.",
+  "Certificado médico emitido en los últimos 12 meses.",
+  "Formulario de liberación de responsabilidad.",
+  ...(d.edadMinima && d.edadMinima < 18
+    ? ["Autorización de madre, padre o tutor si sos menor de 18 años."]
+    : []),
+];
+---
+
+<BaseLayout title={d.titulo}>
+  <section class="page-header">
+    <img
+      class="page-header__photo"
+      src={`${base}images/gallery/${d.fotoPortada}`}
+      alt={d.fotoPortadaAlt}
+    />
+    <div class="page-header__scrim"></div>
+    <div class="container page-header__content">
+      <div class="page-header__text">
+        <p class="eyebrow">Curso · {d.nivel}</p>
+        <h1>{d.titulo}</h1>
+        <p class="page-header__lead">{d.resumen}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container section curso">
+    <div class="curso__intro">
+      {d.introduccion?.map((parrafo) => <p>{parrafo}</p>)}
+    </div>
+
+    {
+      d.destacados && (
+        <ul class="curso__chips">
+          {d.destacados.map((item) => <li>{item}</li>)}
+        </ul>
+      )
+    }
+
+    {
+      ficha.length > 0 && (
+        <dl class="ficha">
+          {ficha.map((item) => (
+            <div class="ficha__item">
+              <dt>{item.etiqueta}</dt>
+              <dd>{item.valor}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+
+    {
+      d.marcas && (
+        <section class="curso__bloque">
+          <h2>Marcas para certificar</h2>
+          <ul class="marcas">
+            {d.marcas.map((m) => (
+              <li class="marcas__item">
+                <span class="marcas__valor">{m.valor}</span>
+                <span class="marcas__sigla">{m.sigla}</span>
+                <span class="marcas__prueba">{m.prueba}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="curso__nota">
+            {d.categoria === "certificacion" && d.titulo !== "Discovery"
+              ? "Además, examen teórico FAAS aprobado con al menos el 70%. "
+              : ""}
+            {d.aguasAbiertas}
+          </p>
+        </section>
+      )
+    }
+
+    {
+      (d.teoria || d.practica) && (
+        <section class="curso__bloque">
+          <h2>Qué vas a aprender</h2>
+          <div class="temario">
+            {[
+              { titulo: "Teoría", bloque: d.teoria },
+              { titulo: "Práctica", bloque: d.practica },
+            ].map(
+              ({ titulo, bloque }) =>
+                bloque && (
+                  <div class="temario__col">
+                    <h3>{titulo}</h3>
+                    <p class="temario__clases">{bloque.clases}</p>
+                    <ul>
+                      {bloque.temas.map((tema) => (
+                        <li>{tema}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      d.secciones && (
+        <section class="curso__bloque">
+          <h2>{d.categoria === "certificacion" ? "Programa semana a semana" : "Cómo trabajamos"}</h2>
+          <div class="acc">
+            {d.secciones.map((seccion, j) => (
+              <div class={`acc-item acc-item--tone${j % 2}`}>
+                <input type="checkbox" id={`sec-${j}`} class="acc-toggle" checked={j === 0} />
+                <label for={`sec-${j}`} class="acc-header">
+                  <span>{seccion.titulo}</span>
+                  <svg class="acc-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </label>
+                <div class="acc-body-wrap">
+                  <div class="acc-body">
+                    {seccion.parrafos.map((parrafo) => <p>{parrafo}</p>)}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="curso__bloque">
+      <h2>Requisitos</h2>
+      {
+        d.categoria === "certificacion" ? (
+          <>
+            <ul class="requisitos">
+              {documentos.map((doc) => <li>{doc}</li>)}
+            </ul>
+            {d.requisitos && <p class="curso__nota">{d.requisitos}</p>}
+          </>
+        ) : (
+          <p class="curso__nota">{d.requisitos}</p>
+        )
+      }
+    </section>
+
+    {
+      (anterior || siguiente) && (
+        <nav class="niveles-nav" aria-label="Otros niveles">
+          {anterior ? (
+            <a href={`${base}cursos/${anterior.id}`}>
+              <span>Nivel anterior</span>
+              {anterior.data.titulo}
+            </a>
+          ) : (
+            <span />
+          )}
+          {siguiente && (
+            <a class="niveles-nav__next" href={`${base}cursos/${siguiente.id}`}>
+              <span>Siguiente nivel</span>
+              {siguiente.data.titulo}
+            </a>
+          )}
+        </nav>
+      )
+    }
+  </div>
+
+  <div class="container section discipline-cta">
+    <a class="btn btn--solid" href={`${base}contacto`}>Consultar e inscribirme</a>
+    <a class="btn btn--outline" href={`${base}cursos`}>Ver todos los cursos</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    overflow: hidden;
+    padding-block: 3rem;
+  }
+
+  .page-header__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+
+  .page-header__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(4, 12, 20, 0.85) 0%,
+      rgba(4, 12, 20, 0.6) 45%,
+      rgba(4, 12, 20, 0.2) 100%
+    );
+  }
+
+  .page-header__content {
+    position: relative;
+  }
+
+  .page-header__text {
+    max-width: 40rem;
+  }
+
+  .page-header .eyebrow {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .page-header h1 {
+    color: #fff;
+    margin: 0.4rem 0 1rem;
+  }
+
+  .page-header__lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  @media (min-width: 800px) {
+    .page-header {
+      padding-block: 4.5rem;
+    }
+  }
+
+  .curso {
+    max-width: 50rem;
+    margin-inline: auto;
+  }
+
+  .curso__intro {
+    font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+    line-height: 1.7;
+    color: var(--color-navy-700);
+  }
+
+  .curso__intro p {
+    margin: 0 0 1.1rem;
+  }
+
+  .curso__chips {
+    list-style: none;
+    margin: 1.5rem 0 2.5rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .curso__chips li {
+    background: var(--color-blue-100);
+    color: var(--color-navy-900);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  .ficha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    margin: 0;
+    background: rgba(11, 37, 69, 0.1);
+    border: 1px solid rgba(11, 37, 69, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .ficha__item {
+    flex: 1 1 13rem;
+    background: var(--color-white);
+    padding: 1rem 1.25rem;
+  }
+
+  .ficha dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .ficha dd {
+    margin: 0.25rem 0 0;
+    color: var(--color-navy-900);
+    font-weight: 500;
+  }
+
+  .curso__bloque {
+    margin-top: 3rem;
+  }
+
+  .curso__bloque h2 {
+    margin: 0 0 1.25rem;
+  }
+
+  .curso__nota {
+    color: var(--color-navy-700);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .marcas {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1rem;
+  }
+
+  .marcas__item {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-navy-900);
+    color: var(--color-text-inverse);
+    border-radius: 1rem;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .marcas__valor {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .marcas__sigla {
+    color: var(--color-blue-400);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-top: 0.3rem;
+  }
+
+  .marcas__prueba {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .temario {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 720px) {
+    .temario {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .temario__col {
+    background: rgba(79, 163, 209, 0.1);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .temario__col h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  .temario__clases {
+    margin: 0.2rem 0 0.8rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .temario__col ul,
+  .requisitos {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--color-navy-700);
+    line-height: 1.6;
+  }
+
+  .temario__col li + li,
+  .requisitos li + li {
+    margin-top: 0.3rem;
+  }
+
+  .acc {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .acc-item {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .acc-item--tone0 {
+    background: rgba(79, 163, 209, 0.12);
+  }
+
+  .acc-item--tone1 {
+    background: rgba(11, 37, 69, 0.06);
+  }
+
+  .acc-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .acc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.3rem;
+    cursor: pointer;
+    font-family: var(--font-base);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-navy-900);
+  }
+
+  .acc-chevron {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .acc-toggle:checked + .acc-header .acc-chevron {
+    transform: rotate(180deg);
+  }
+
+  .acc-body-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+
+  .acc-toggle:checked ~ .acc-body-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .acc-body {
+    overflow: hidden;
+  }
+
+  .acc-body p {
+    margin: 0 0 0.9rem 1.3rem;
+    padding-right: 1.3rem;
+    color: var(--color-navy-700);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .acc-body p:last-child {
+    margin-bottom: 1.3rem;
+  }
+
+  .niveles-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(11, 37, 69, 0.1);
+  }
+
+  .niveles-nav a {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-navy-900);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .niveles-nav a span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  .niveles-nav__next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .discipline-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+titulo: "Apneísta Nivel 3"
+certificacion: "Apneísta Nivel 3 / Apneísta en Piscina Nivel 3 FAAS/CMAS"
+nivel: "Avanzado"
+duracion: "4 clases teóricas + 6 prácticas"
+resumen: "El nivel más alto de apneísta: mouthfill, fisiología avanzada, rescate en aguas abiertas y coaching, con inmersiones hasta 40 m."
+edadMinima: 18
+prerrequisito: "Apneísta Nivel 2 (o Apneísta en Piscina Nivel 2 para la modalidad pileta)."
+destacados:
+  - "Desde los 18 años"
+  - "Ecualización con mouthfill"
+  - "Rescate y primeros auxilios en aguas abiertas"
+  - "Opcional: aguas abiertas hasta 40 m"
+introduccion:
+  - "El Nivel 3 cierra la formación de apneísta: sumás fisiología avanzada, ecualización con mouthfill, preparación física y herramientas de coaching para acompañar a otros apneístas."
+  - "Además es el nivel que te habilita a asistir a un instructor durante los cursos. Certificás Apneísta en Piscina Nivel 3 o, con las inmersiones en aguas abiertas, Apneísta Nivel 3."
+teoria:
+  clases: "4 clases de 2 horas"
+  temas:
+    - "CMAS y estructura de la federación nacional"
+    - "Fisiología avanzada: blackout (BO) y pérdida de control motor (LMC)"
+    - "Técnicas avanzadas de ecualización"
+    - "Relajación avanzada: meditación"
+    - "Barotrauma pulmonar"
+    - "Rescate y primeros auxilios en accidentes de buceo"
+    - "Técnicas de respiración avanzadas"
+    - "Condición física y preparación"
+    - "Coaching"
+    - "Mareas y uso de tablas de mareas"
+practica:
+  clases: "6 clases de 2 horas"
+  temas:
+    - "Ecualización con mouthfill"
+    - "Elongación"
+    - "Rescate y primeros auxilios en aguas abiertas"
+    - "Apnea estática"
+    - "Dinámica con bialetas (DYNB), sin aletas (DNF) y con monoaleta (DYN)"
+    - "Peso constante con bialetas (CWTB) e inmersión libre (FIM)"
+    - "Introducción a peso constante sin aletas (CNF)"
+    - "Coaching"
+    - "Rescate, ascenso sin máscara y ascenso solo con brazada desde 15 m"
+marcas:
+  - sigla: "STA"
+    prueba: "Apnea estática"
+    valor: "3:30 min"
+  - sigla: "DYNB"
+    prueba: "Dinámica con bialetas"
+    valor: "75 m"
+  - sigla: "DNF"
+    prueba: "Dinámica sin aletas"
+    valor: "50 m"
+  - sigla: "CWTB"
+    prueba: "Peso constante con bialetas"
+    valor: "30 m"
+profundidadMaxima: "40 m"
+aguasAbiertas: "4 inmersiones registradas en aguas abiertas para certificar Apneísta Nivel 3."
+fotoPortada: "bajo-el-agua/buceador-descenso-oscuro.png"
+fotoPortadaAlt: "Apneísta descendiendo en aguas profundas"
+orden: 4
+---

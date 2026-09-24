@@ -1,0 +1,531 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const base = import.meta.env.BASE_URL;
+
+const cursos = (await getCollection("cursos")).sort(
+  (a, b) => (a.data.orden ?? 0) - (b.data.orden ?? 0)
+);
+const niveles = cursos.filter((curso) => curso.data.categoria === "certificacion");
+const entrenamientos = cursos.filter((curso) => curso.data.categoria === "entrenamiento");
+
+const siglas = ["STA", "DYNB", "DNF", "CWTB"];
+const marca = (curso: (typeof niveles)[number], sigla: string) =>
+  curso.data.marcas?.find((m) => m.sigla === sigla)?.valor ?? "—";
+const buceos = (curso: (typeof niveles)[number]) =>
+  curso.data.aguasAbiertas?.match(/^\d+/)?.[0] ?? "—";
+---
+
+<BaseLayout title="Cursos">
+  <section class="page-header">
+    <img
+      class="page-header__photo"
+      src={`${base}images/gallery/entrenamiento/estiramiento-nocturno-grupal.jpeg`}
+      alt="Grupo haciendo estiramiento nocturno junto a la pileta"
+    />
+    <div class="page-header__scrim"></div>
+    <div class="container page-header__content">
+      <div class="page-header__text">
+        <h1>Cursos</h1>
+        <p class="page-header__lead">
+          Formación de apneístas bajo el estándar FAAS/CMAS, desde tu primera clase hasta el
+          Nivel 3 en aguas abiertas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <p class="eyebrow">Ruta de certificación</p>
+    <h2>Un nivel a la vez</h2>
+    <p class="cursos-lead">
+      Cada nivel tiene su teoría, sus prácticas y unas marcas mínimas que tenés que alcanzar para
+      certificar. Los niveles se hacen en orden: cada certificación te habilita para el siguiente.
+    </p>
+    <ol class="ruta">
+      {
+        niveles.map((curso) => (
+          <li class="ruta__item">
+            <a class="ruta__card" href={`${base}cursos/${curso.id}`}>
+              <img
+                class="ruta__photo"
+                src={`${base}images/gallery/${curso.data.fotoPortada}`}
+                alt={curso.data.fotoPortadaAlt}
+                loading="lazy"
+              />
+              <div class="ruta__body">
+                <p class="eyebrow">{curso.data.nivel}</p>
+                <h3>{curso.data.titulo}</h3>
+                <p>{curso.data.resumen}</p>
+                <ul class="ruta__meta">
+                  {curso.data.edadMinima && <li>Desde {curso.data.edadMinima} años</li>}
+                  {curso.data.profundidadMaxima && <li>Hasta {curso.data.profundidadMaxima}</li>}
+                </ul>
+                <span class="ruta__link">Ver curso →</span>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section modalidades">
+    <div class="container">
+      <p class="eyebrow">Modalidades</p>
+      <h2>Pileta o aguas abiertas</h2>
+      <div class="modalidades__grid">
+        <div class="modalidad">
+          <h3>Apneísta en Piscina</h3>
+          <p>
+            Completás la teoría, las prácticas y las marcas del nivel en pileta, y certificás
+            Apneísta en Piscina Nivel 1, 2 o 3. No hace falta salir a aguas abiertas.
+          </p>
+        </div>
+        <div class="modalidad">
+          <h3>Apneísta</h3>
+          <p>
+            Sumás las inmersiones en aguas abiertas (mar o lagunas con visibilidad) con nuestro
+            instructor y certificás Apneísta Nivel 1, 2 o 3. Si ya sos Apneísta en Piscina de un
+            nivel, solo te falta la parte de aguas abiertas de ese nivel.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <p class="eyebrow">Evaluación</p>
+    <h2>Marcas mínimas por nivel</h2>
+    <p class="cursos-lead">
+      Además de estas marcas, del Nivel 1 en adelante hay que aprobar el examen teórico de la FAAS
+      con al menos el 70%.
+    </p>
+    <div class="tabla-wrap">
+      <table class="tabla-marcas">
+        <thead>
+          <tr>
+            <th scope="col">Nivel</th>
+            {siglas.map((sigla) => <th scope="col">{sigla}</th>)}
+            <th scope="col">Buceos en aguas abiertas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            niveles.map((curso) => (
+              <tr>
+                <th scope="row">
+                  <a href={`${base}cursos/${curso.id}`}>{curso.data.titulo}</a>
+                </th>
+                {siglas.map((sigla) => <td>{marca(curso, sigla)}</td>)}
+                <td>{buceos(curso)}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="tabla-nota">
+      STA: apnea estática · DYNB: dinámica con bialetas · DNF: dinámica sin aletas · CWTB: peso
+      constante con bialetas (profundidad). Si se entrena en agua dulce o en mar por debajo de
+      15 °C, las marcas pueden reducirse un 20%.
+    </p>
+  </section>
+
+  <section class="section seguridad">
+    <div class="container seguridad__grid">
+      <div>
+        <p class="eyebrow">Seguridad</p>
+        <h2>Grupos chicos, siempre acompañados</h2>
+        <p>
+          Trabajamos con un enfoque individual para cada alumno y nunca empujamos a nadie más
+          allá de sus límites. Un blackout, una pérdida de control motor o un barotrauma no son
+          un resultado aceptable en ningún curso.
+        </p>
+        <p>
+          Si tenés alguna lesión (rodilla, hombro, zona lumbar), el instructor puede adaptar o
+          eximirte de habilidades puntuales sin que eso te impida certificar.
+        </p>
+      </div>
+      <ul class="seguridad__ratios">
+        <li><strong>1 : 6</strong><span>instructor por alumnos en pileta</span></li>
+        <li><strong>1 : 4</strong><span>instructor por alumnos en aguas abiertas</span></li>
+        <li><strong>Buddy</strong><span>sistema de compañeros en cada sesión</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="container section cursos-list">
+    {
+      entrenamientos.map((curso) => (
+        <article class="curso-block">
+          <img
+            class="curso-block__photo"
+            src={`${base}images/gallery/${curso.data.fotoPortada}`}
+            alt={curso.data.fotoPortadaAlt}
+            loading="lazy"
+          />
+          <div class="curso-block__body">
+            <p class="eyebrow">
+              {curso.data.nivel}
+              {curso.data.duracion && ` · ${curso.data.duracion}`}
+            </p>
+            <h2>{curso.data.titulo}</h2>
+            <p class="curso-block__intro">{curso.data.resumen}</p>
+            {curso.data.destacados && (
+              <ul class="curso-block__chips">
+                {curso.data.destacados.map((item) => <li>{item}</li>)}
+              </ul>
+            )}
+            <a class="btn btn--outline" href={`${base}cursos/${curso.id}`}>Ver detalle</a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="container section discipline-cta">
+    <a class="btn btn--solid" href={`${base}contacto`}>Consultar e inscribirme</a>
+    <a class="btn btn--outline" href={`${base}nosotros`}>Conocé al equipo</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    overflow: hidden;
+    padding-block: 3rem;
+  }
+
+  .page-header__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 72%;
+    display: block;
+  }
+
+  .page-header__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(4, 12, 20, 0.85) 0%,
+      rgba(4, 12, 20, 0.65) 45%,
+      rgba(4, 12, 20, 0.25) 100%
+    );
+  }
+
+  .page-header__content {
+    position: relative;
+  }
+
+  .page-header__text {
+    max-width: 40rem;
+  }
+
+  .page-header h1 {
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .page-header__lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  @media (min-width: 800px) {
+    .page-header {
+      padding-block: 4.5rem;
+    }
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+  }
+
+  h2 {
+    margin: 0.3rem 0 1rem;
+  }
+
+  .cursos-lead {
+    color: var(--color-navy-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  /* Ruta de certificación */
+  .ruta {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .ruta {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .ruta {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .ruta__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(79, 163, 209, 0.1);
+    color: var(--color-navy-900);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .ruta__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(11, 37, 69, 0.12);
+  }
+
+  .ruta__photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ruta__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.1rem 1.25rem 1.35rem;
+  }
+
+  .ruta__body h3 {
+    margin: 0.2rem 0 0.6rem;
+    font-size: 1.15rem;
+  }
+
+  .ruta__body p:not(.eyebrow) {
+    margin: 0 0 1rem;
+    color: var(--color-navy-700);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .ruta__meta {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .ruta__meta li {
+    background: var(--color-white);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+
+  .ruta__link {
+    margin-top: auto;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* Modalidades */
+  .modalidades {
+    background: var(--color-navy-900);
+    color: var(--color-text-inverse);
+  }
+
+  .modalidades h2,
+  .modalidades h3 {
+    color: var(--color-text-inverse);
+  }
+
+  .modalidades__grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 800px) {
+    .modalidades__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .modalidad {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .modalidad h3 {
+    margin: 0 0 0.6rem;
+    font-size: 1.2rem;
+  }
+
+  .modalidad p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+
+  /* Tabla de marcas */
+  .tabla-wrap {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+  }
+
+  .tabla-marcas {
+    width: 100%;
+    min-width: 34rem;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tabla-marcas th,
+  .tabla-marcas td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(11, 37, 69, 0.1);
+  }
+
+  .tabla-marcas thead th {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .tabla-marcas tbody th a {
+    color: var(--color-navy-900);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .tabla-marcas tbody tr:hover {
+    background: rgba(79, 163, 209, 0.08);
+  }
+
+  .tabla-nota {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Seguridad */
+  .seguridad {
+    background: var(--color-blue-100);
+  }
+
+  .seguridad__grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .seguridad__grid {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  }
+
+  .seguridad__grid p:not(.eyebrow) {
+    color: var(--color-navy-700);
+    line-height: 1.65;
+  }
+
+  .seguridad__ratios {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .seguridad__ratios li {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    background: var(--color-white);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .seguridad__ratios strong {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    min-width: 5.5rem;
+    color: var(--color-navy-900);
+  }
+
+  .seguridad__ratios span {
+    color: var(--color-navy-700);
+  }
+
+  /* Entrenamiento continuo */
+  .curso-block {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .curso-block__photo {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 1rem;
+    display: block;
+  }
+
+  .curso-block__intro {
+    color: var(--color-navy-700);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .curso-block__chips {
+    list-style: none;
+    margin: 1.25rem 0 1.75rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .curso-block__chips li {
+    background: var(--color-blue-100);
+    color: var(--color-navy-900);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  @media (min-width: 900px) {
+    .curso-block {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .discipline-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>
