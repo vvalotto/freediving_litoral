@@ -1,15 +1,14 @@
 ---
-const base = import.meta.env.BASE_URL;
+import Foto from "./Foto.astro";
 ---
 
 <section class="faas">
   <div class="container faas__inner">
     <a class="faas__logo" href="https://www.faas.org.ar/" target="_blank" rel="noopener">
-      <img
-        src={`${base}images/brand/faas-color.png`}
+      <Foto
+        src={`brand/faas-color.png`}
         alt="FAAS, Federación Argentina de Actividades Subacuáticas"
-        loading="lazy"
-      />
+        loading="lazy" widths={[150, 300]} sizes="150px" />
     </a>
     <div class="faas__copy">
       <h2>Escuela habilitada por la FAAS</h2>

@@ -22,6 +22,11 @@
   box-sizing: border-box;
 }
 
+/* <Image> agrega width/height al HTML; sin esto la altura del atributo pisa aspect-ratio */
+img {
+  height: auto;
+}
+
 body {
   margin: 0;
   font-family: var(--font-base);

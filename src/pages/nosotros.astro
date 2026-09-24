@@ -1,4 +1,5 @@
 ---
+import Foto from "../components/Foto.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TeamGrid from "../components/TeamGrid.astro";
 import AthletesGrid from "../components/AthletesGrid.astro";
@@ -8,11 +9,10 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout title="Nosotros">
   <section class="page-header">
-    <img
+    <Foto
       class="page-header__photo"
-      src={`${base}images/gallery/equipo/grupo-equipo-san-isidro.jpeg`}
-      alt="Equipo de Freediving Litoral en competencia en San Isidro"
-    />
+      src={`gallery/equipo/grupo-equipo-san-isidro.jpeg`}
+      alt="Equipo de Freediving Litoral en competencia en San Isidro" loading="eager" fetchpriority="high" />
     <div class="page-header__scrim"></div>
     <div class="container page-header__content">
       <div class="page-header__text">
@@ -34,9 +34,9 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
   <section class="section audience">
-    <img
+    <Foto
       class="audience__photo"
-      src={`${base}images/gallery/bajo-el-agua/buceador-superficie-luz.jpg`}
+      src={`gallery/bajo-el-agua/buceador-superficie-luz.jpg`}
       alt=""
     />
     <div class="audience__scrim"></div>

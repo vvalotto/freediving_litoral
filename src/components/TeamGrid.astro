@@ -1,4 +1,5 @@
 ---
+import Foto from "./Foto.astro";
 const base = import.meta.env.BASE_URL;
 
 const equipo = [
@@ -26,7 +27,7 @@ const equipo = [
 ---
 
 <section class="section team">
-  <img class="team__photo" src={`${base}images/gallery/bajo-el-agua/buceador-cabo-profundidad.jpg`} alt="" />
+  <Foto class="team__photo" src={`gallery/bajo-el-agua/buceador-cabo-profundidad.jpg`} alt="" />
   <div class="team__scrim"></div>
   <div class="container team__content">
     <h2>Nuestro equipo</h2>
@@ -34,7 +35,7 @@ const equipo = [
       {
         equipo.map((persona) => (
           <div class="team__card">
-            <img src={`${base}images/team/${persona.foto}`} alt={persona.nombre} />
+            <Foto src={`team/${persona.foto}`} alt={persona.nombre} widths={[320, 640]} sizes="(min-width: 900px) 260px, 50vw" />
             <h3>{persona.nombre}</h3>
             <ul>
               {persona.perfil.map((linea) => <li>{linea}</li>)}

@@ -1,4 +1,5 @@
 ---
+import Foto from "../../components/Foto.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
@@ -19,11 +20,10 @@ const buceos = (curso: (typeof niveles)[number]) =>
 
 <BaseLayout title="Cursos">
   <section class="page-header">
-    <img
+    <Foto
       class="page-header__photo"
-      src={`${base}images/gallery/entrenamiento/estiramiento-nocturno-grupal.jpeg`}
-      alt="Grupo haciendo estiramiento nocturno junto a la pileta"
-    />
+      src={`gallery/entrenamiento/estiramiento-nocturno-grupal.jpeg`}
+      alt="Grupo haciendo estiramiento nocturno junto a la pileta" loading="eager" fetchpriority="high" />
     <div class="page-header__scrim"></div>
     <div class="container page-header__content">
       <div class="page-header__text">
@@ -48,12 +48,11 @@ const buceos = (curso: (typeof niveles)[number]) =>
         niveles.map((curso) => (
           <li class="ruta__item">
             <a class="ruta__card" href={`${base}cursos/${curso.id}`}>
-              <img
+              <Foto
                 class="ruta__photo"
-                src={`${base}images/gallery/${curso.data.fotoPortada}`}
+                src={`gallery/${curso.data.fotoPortada}`}
                 alt={curso.data.fotoPortadaAlt}
-                loading="lazy"
-              />
+                loading="lazy" widths={[400, 800]} sizes="(min-width: 1000px) 25vw, (min-width: 640px) 50vw, 100vw" />
               <div class="ruta__body">
                 <p class="eyebrow">{curso.data.nivel}</p>
                 <h3>{curso.data.titulo}</h3>
@@ -160,12 +159,11 @@ const buceos = (curso: (typeof niveles)[number]) =>
     {
       entrenamientos.map((curso) => (
         <article class="curso-block">
-          <img
+          <Foto
             class="curso-block__photo"
-            src={`${base}images/gallery/${curso.data.fotoPortada}`}
+            src={`gallery/${curso.data.fotoPortada}`}
             alt={curso.data.fotoPortadaAlt}
-            loading="lazy"
-          />
+            loading="lazy" widths={[480, 800, 1200]} sizes="(min-width: 900px) 50vw, 100vw" />
           <div class="curso-block__body">
             <p class="eyebrow">
               {curso.data.nivel}

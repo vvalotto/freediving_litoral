@@ -1,4 +1,5 @@
 ---
+import Foto from "./Foto.astro";
 const base = import.meta.env.BASE_URL;
 
 const disciplinas = [
@@ -40,13 +41,12 @@ const disciplinas = [
       {
         disciplinas.map((d) => (
           <div class="feature-grid__item">
-            <img
+            <Foto
               class="feature-grid__photo"
-              src={`${base}images/gallery/${d.foto}`}
+              src={`gallery/${d.foto}`}
               alt={d.alt}
               loading="lazy"
-              style={d.posicion ? `object-position: center ${d.posicion};` : undefined}
-            />
+              style={d.posicion ? `object-position: center ${d.posicion};` : undefined} widths={[480, 800, 1200]} sizes="(min-width: 800px) 33vw, 100vw" />
             <h3>{d.titulo}</h3>
             <p>{d.texto}</p>
             <a class="feature-grid__link" href={`${base}disciplinas/${d.slug}`}>

@@ -1,7 +1,6 @@
 ---
+import Foto from "../components/Foto.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const base = import.meta.env.BASE_URL;
 
 const secciones = [
   {
@@ -97,13 +96,12 @@ const secciones = [
           <h2>{seccion.titulo}</h2>
           <div class:list={["gallery-grid", { "gallery-grid--vertical": seccion.vertical }]}>
             {seccion.fotos.map((foto) => (
-              <img
-                src={`${base}images/gallery/${foto.archivo}`}
+              <Foto
+                src={`gallery/${foto.archivo}`}
                 alt={foto.alt}
                 loading="lazy"
                 class={foto.ancho ? "wide" : undefined}
-                style={foto.pos ? `object-position: center ${foto.pos};` : undefined}
-              />
+                style={foto.pos ? `object-position: center ${foto.pos};` : undefined} widths={[400, 800, 1200]} sizes="(min-width: 700px) 33vw, 50vw" />
             ))}
           </div>
         </div>

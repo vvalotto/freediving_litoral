@@ -1,6 +1,5 @@
 ---
-const base = import.meta.env.BASE_URL;
-
+import Foto from "./Foto.astro";
 const steps = [
   {
     titulo: "Cursos de Apneísta, Nivel 1 a 3",
@@ -34,13 +33,12 @@ const steps = [
       {
         steps.map((step) => (
           <div class="process__item">
-            <img
+            <Foto
               class="process__photo"
-              src={`${base}images/gallery/${step.foto}`}
+              src={`gallery/${step.foto}`}
               alt={step.alt}
               loading="lazy"
-              style={step.posicion ? `object-position: center ${step.posicion};` : undefined}
-            />
+              style={step.posicion ? `object-position: center ${step.posicion};` : undefined} widths={[480, 800, 1200]} sizes="(min-width: 800px) 33vw, 100vw" />
             <h3>{step.titulo}</h3>
             <p>{step.texto}</p>
           </div>

@@ -1,13 +1,13 @@
 ---
+import Foto from "./Foto.astro";
 const base = import.meta.env.BASE_URL;
 ---
 
 <section class="hero">
-  <img
+  <Foto
     class="hero__photo"
-    src={`${base}images/gallery/bajo-el-agua/buceador-rayos-luz.jpg`}
-    alt="Buceador nadando entre rayos de luz bajo el agua"
-  />
+    src={`gallery/bajo-el-agua/buceador-rayos-luz.jpg`}
+    alt="Buceador nadando entre rayos de luz bajo el agua" loading="eager" fetchpriority="high" />
   <div class="hero__scrim"></div>
   <div class="container hero__content">
     <div class="hero__text">

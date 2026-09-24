@@ -6,7 +6,9 @@ Definido a partir de los 3 isotipos compartidos por Victor (2026-09-06). Los col
 
 Raya (manta) con líneas de estilo maorí/polinesio, dentro de la cual se recorta la silueta de un buzo libre en apnea ascendiendo. Debajo, dos trazos de ola. Las iniciales "F" y "L" aparecen a los costados, y el wordmark "FREEDIVING LITORAL" en versalitas espaciadas.
 
-### Archivos (`public/images/brand/`)
+### Archivos
+
+Los logos que usa el sitio (`logo-badge-navy.png`, `logo-icon-navy.png`, `faas-*.png`) están en `src/assets/images/brand/` y se optimizan en el build; el resto sigue en `public/images/brand/`.
 
 - `logo-badge-navy.png` — insignia sólida navy (círculo relleno, isotipo en blanco). Usada como base del favicon y en el footer (fondo oscuro).
 - `logo-icon-navy.png` — el mismo isotipo en contorno navy, recortado sin el texto "FREEDIVING LITORAL" (crop programático del archivo de abajo). Usado en el header junto al wordmark tipográfico.
