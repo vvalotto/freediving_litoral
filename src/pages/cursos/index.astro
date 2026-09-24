@@ -18,7 +18,11 @@ const buceos = (curso: (typeof niveles)[number]) =>
   curso.data.aguasAbiertas?.match(/^\d+/)?.[0] ?? "—";
 ---
 
-<BaseLayout title="Cursos">
+<BaseLayout
+  title="Cursos"
+  description="Cursos de apnea FAAS/CMAS: Discovery y Apneísta Nivel 1, 2 y 3, en pileta o aguas abiertas. Requisitos, marcas mínimas y programa de cada nivel."
+  image="gallery/entrenamiento/estiramiento-nocturno-grupal.jpeg"
+>
   <section class="page-header">
     <Foto
       class="page-header__photo"
