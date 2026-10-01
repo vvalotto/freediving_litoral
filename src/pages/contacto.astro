@@ -18,12 +18,12 @@ const contactos = [
     href: `mailto:${escuela.email}`,
     icono: "mail",
   },
-  {
+  ...escuela.whatsapp.map((w) => ({
     nombre: "WhatsApp",
-    valor: "+54 9 343 452-3986",
-    href: escuela.whatsapp,
+    valor: w.numero,
+    href: w.url,
     icono: "whatsapp",
-  },
+  })),
 ];
 ---
 
