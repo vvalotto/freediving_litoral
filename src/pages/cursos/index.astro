@@ -63,7 +63,6 @@ const buceos = (curso: (typeof niveles)[number]) =>
                 <p>{curso.data.resumen}</p>
                 <ul class="ruta__meta">
                   {curso.data.edadMinima && <li>Desde {curso.data.edadMinima} años</li>}
-                  {marca(curso, "CWTB") !== "—" && <li>Profundidad {marca(curso, "CWTB")}</li>}
                 </ul>
                 <span class="ruta__link">Ver curso →</span>
               </div>
