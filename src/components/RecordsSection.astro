@@ -1,0 +1,267 @@
+---
+import { atletas, disciplinas, fuente, recordsEscuela, type Atleta, type Disciplina } from "../data/records";
+
+const grupos = [
+  { sexo: "M" as const, titulo: "Masculino" },
+  { sexo: "F" as const, titulo: "Femenino" },
+].map((g) => ({ ...g, records: recordsEscuela(g.sexo), atletas: atletas.filter((a) => a.sexo === g.sexo) }));
+
+const mesAnio = (fecha: string) =>
+  new Date(`${fecha}T12:00:00`).toLocaleDateString("es-AR", { month: "short", year: "numeric" });
+
+const esRecord = (atleta: Atleta, sigla: Disciplina) =>
+  grupos.some((g) => g.records.some((r) => r.atleta === atleta && r.disciplina.sigla === sigla));
+---
+
+<section class="section records">
+  <div class="container">
+    <p class="eyebrow">Competencia indoor</p>
+    <h2>Récords de la escuela</h2>
+    <p class="records__lead">
+      Las mejores marcas de nuestros atletas en competencias oficiales, según el registro histórico de
+      la FAAS.
+    </p>
+
+    <div class="records__grupos">
+      {
+        grupos.map((grupo) => (
+          <div class="records__grupo">
+            <h3>{grupo.titulo}</h3>
+            <ul class="records__lista">
+              {grupo.records.map((r) => (
+                <li class="record">
+                  <span class="record__sigla">{r.disciplina.sigla}</span>
+                  <span class="record__nombre">{r.disciplina.nombre}</span>
+                  {r.marca ? (
+                    <>
+                      <span class="record__valor">{r.marca.valor}</span>
+                      <span class="record__atleta">
+                        {r.atleta!.nombre} · {mesAnio(r.marca.fecha)}
+                      </span>
+                    </>
+                  ) : (
+                    <span class="record__vacio">Sin marca registrada</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <h3 class="pbs__titulo">Marcas personales</h3>
+    <div class="pbs__wrap">
+      <table class="pbs">
+        <thead>
+          <tr>
+            <th scope="col">Atleta</th>
+            {disciplinas.map((d) => <th scope="col" title={d.nombre}>{d.sigla === "SPE" ? "SPE 2x50" : d.sigla}</th>)}
+          </tr>
+        </thead>
+        {
+          grupos.map((grupo) => (
+            <tbody>
+              <tr class="pbs__grupo">
+                <th scope="rowgroup" colspan={disciplinas.length + 1}>{grupo.titulo}</th>
+              </tr>
+              {grupo.atletas.map((atleta) => (
+                <tr>
+                  <th scope="row">{atleta.nombre}</th>
+                  {disciplinas.map((d) => {
+                    const marca = atleta.marcas[d.sigla];
+                    return marca ? (
+                      <td
+                        class:list={{ "pbs__record": esRecord(atleta, d.sigla) }}
+                        title={`${marca.competencia} (${mesAnio(marca.fecha)})`}
+                      >
+                        {marca.valor}
+                      </td>
+                    ) : (
+                      <td class="pbs__vacio">—</td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          ))
+        }
+      </table>
+    </div>
+    <p class="records__nota">
+      <span class="records__marca" aria-hidden="true"></span> Récord de la escuela. Marcas con
+      penalizaciones aplicadas. Fuente:
+      <a href={fuente.url} target="_blank" rel="noopener">{fuente.nombre}</a>. La marca de DYN de
+      Martín Andrioli se logró en la Copa del Mundo CMAS (Barranquilla, 2024).
+    </p>
+  </div>
+</section>
+
+<style>
+  .records {
+    background: var(--color-navy-900);
+    color: var(--color-text-inverse);
+  }
+
+  .records .eyebrow {
+    color: var(--color-blue-400);
+  }
+
+  .records h2,
+  .records h3 {
+    color: var(--color-text-inverse);
+  }
+
+  .records h2 {
+    margin: 0.3rem 0 0.75rem;
+  }
+
+  .records__lead {
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 60ch;
+  }
+
+  .records__grupos {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 860px) {
+    .records__grupos {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .records__grupo h3 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+  }
+
+  .records__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .record {
+    display: grid;
+    grid-template-columns: 3.6rem 1fr auto;
+    grid-template-areas:
+      "sigla nombre valor"
+      "sigla atleta valor";
+    align-items: center;
+    column-gap: 1rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .record__sigla {
+    grid-area: sigla;
+    color: var(--color-blue-400);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .record__nombre {
+    grid-area: nombre;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .record__atleta {
+    grid-area: atleta;
+    font-weight: 500;
+  }
+
+  .record__valor {
+    grid-area: valor;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  .record__vacio {
+    grid-area: atleta;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+  }
+
+  .pbs__titulo {
+    margin: 3rem 0 1rem;
+    font-size: 1.1rem;
+  }
+
+  .pbs__wrap {
+    overflow-x: auto;
+  }
+
+  .pbs {
+    width: 100%;
+    min-width: 40rem;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pbs th,
+  .pbs td {
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+  }
+
+  .pbs thead th {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
+  .pbs tbody th[scope="row"] {
+    font-weight: 500;
+  }
+
+  .pbs__grupo th {
+    padding-top: 1.4rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-blue-400);
+  }
+
+  .pbs__vacio {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .pbs__record {
+    position: relative;
+    color: var(--color-blue-400);
+    font-weight: 600;
+  }
+
+  .records__nota {
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+  }
+
+  .records__nota a {
+    color: var(--color-blue-400);
+  }
+
+  .records__marca {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    background: var(--color-blue-400);
+    vertical-align: baseline;
+  }
+</style>

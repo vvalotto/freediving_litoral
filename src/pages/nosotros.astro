@@ -3,6 +3,7 @@ import Foto from "../components/Foto.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TeamGrid from "../components/TeamGrid.astro";
 import AthletesGrid from "../components/AthletesGrid.astro";
+import RecordsSection from "../components/RecordsSection.astro";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -56,6 +57,7 @@ const base = import.meta.env.BASE_URL;
   </section>
   <TeamGrid />
   <AthletesGrid />
+  <RecordsSection />
 </BaseLayout>
 
 <style>
