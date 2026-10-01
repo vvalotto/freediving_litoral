@@ -15,7 +15,6 @@ const cursos = defineCollection({
     teoria: z.object({ clases: z.string(), temas: z.array(z.string()) }).optional(),
     practica: z.object({ clases: z.string(), temas: z.array(z.string()) }).optional(),
     marcas: z.array(z.object({ sigla: z.string(), prueba: z.string(), valor: z.string() })).optional(),
-    profundidadMaxima: z.string().optional(),
     aguasAbiertas: z.string().optional(),
     destacados: z.array(z.string()).optional(),
     introduccion: z.array(z.string()).optional(),

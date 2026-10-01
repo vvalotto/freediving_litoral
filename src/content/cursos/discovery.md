@@ -8,7 +8,7 @@ edadMinima: 12
 destacados:
   - "Desde los 12 años"
   - "Todo en pileta, sin aguas abiertas"
-  - "Profundidad máxima 5 m"
+  - "Sin experiencia previa requerida"
   - "Ideal para probar antes del Nivel 1"
 introduccion:
   - "El Discovery es la forma más simple de descubrir la apnea: una clase teórica y dos prácticas en pileta, siempre acompañado por un instructor y bajo el sistema de compañeros."
@@ -42,7 +42,6 @@ marcas:
   - sigla: "CWTB"
     prueba: "Peso constante con bialetas"
     valor: "2 m"
-profundidadMaxima: "5 m"
 fotoPortada: "entrenamiento/entrenamiento-inicial.jpg"
 fotoPortadaAlt: "Alumnos en su primera clase de apnea en pileta"
 orden: 1

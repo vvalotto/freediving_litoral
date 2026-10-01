@@ -9,7 +9,7 @@ destacados:
   - "2 clases semanales de 3 horas"
   - "60 min de teoría + 120 min de práctica en pileta"
   - "Sin experiencia previa requerida"
-  - "Opcional: inmersiones en aguas abiertas hasta 20 m"
+  - "Opcional: certificación en aguas abiertas"
 introduccion:
   - "El curso de Apneísta Nivel 1 es la puerta de entrada al freediving en nuestra escuela: en un mes formamos apneístas desde cero, bajo el estándar de la FAAS y la CMAS."
   - "Combina teoría y práctica en cada clase, avanzando semana a semana desde los fundamentos de la respiración hasta las disciplinas básicas de pileta. Si además completás las inmersiones en aguas abiertas, certificás Apneísta Nivel 1; si no, Apneísta en Piscina Nivel 1."
@@ -45,7 +45,6 @@ marcas:
   - sigla: "CWTB"
     prueba: "Peso constante con bialetas"
     valor: "10 m"
-profundidadMaxima: "20 m"
 aguasAbiertas: "2 inmersiones registradas en aguas abiertas para certificar Apneísta Nivel 1."
 secciones:
   - titulo: "Semana 1 — Fundamentos y apnea estática"
@@ -64,7 +63,7 @@ secciones:
     parrafos:
       - "Teoría: planificación del entrenamiento, nutrición, mentalidad competitiva y reglamentos de competencia CMAS/FAAS."
       - "Práctica: evaluación de las marcas del nivel, examen teórico FAAS y graduación del curso."
-requisitos: "Equipo básico: máscara de bajo volumen, snorkel, aletas, traje de neopreno (opcional según temperatura del agua) y cinturón de lastre flexible."
+requisitos: "Equipo básico: máscara, snorkel y aletas."
 fotoPortada: "entrenamiento/instructor-alumno-tecnica.jpeg"
 fotoPortadaAlt: "Instructor corrigiendo la técnica de un alumno en pileta"
 orden: 2
