@@ -1,16 +1,13 @@
 ---
-import { atletas, disciplinas, fuente, recordsEscuela, type Atleta, type Disciplina } from "../data/records";
+import { fuente, recordsEscuela } from "../data/records";
 
 const grupos = [
   { sexo: "M" as const, titulo: "Masculino" },
   { sexo: "F" as const, titulo: "Femenino" },
-].map((g) => ({ ...g, records: recordsEscuela(g.sexo), atletas: atletas.filter((a) => a.sexo === g.sexo) }));
+].map((g) => ({ ...g, records: recordsEscuela(g.sexo) }));
 
 const mesAnio = (fecha: string) =>
   new Date(`${fecha}T12:00:00`).toLocaleDateString("es-AR", { month: "short", year: "numeric" });
-
-const esRecord = (atleta: Atleta, sigla: Disciplina) =>
-  grupos.some((g) => g.records.some((r) => r.atleta === atleta && r.disciplina.sigla === sigla));
 ---
 
 <section class="section records">
@@ -35,8 +32,9 @@ const esRecord = (atleta: Atleta, sigla: Disciplina) =>
                   {r.marca ? (
                     <>
                       <span class="record__valor">{r.marca.valor}</span>
-                      <span class="record__atleta">
-                        {r.atleta!.nombre} · {mesAnio(r.marca.fecha)}
+                      <span class="record__atleta" title={r.marca.competencia ?? r.marca.nota}>
+                        {r.atleta!.nombre}
+                        {r.marca.fecha && ` · ${mesAnio(r.marca.fecha)}`}
                       </span>
                     </>
                   ) : (
@@ -50,49 +48,11 @@ const esRecord = (atleta: Atleta, sigla: Disciplina) =>
       }
     </div>
 
-    <h3 class="pbs__titulo">Marcas personales</h3>
-    <div class="pbs__wrap">
-      <table class="pbs">
-        <thead>
-          <tr>
-            <th scope="col">Atleta</th>
-            {disciplinas.map((d) => <th scope="col" title={d.nombre}>{d.sigla === "SPE" ? "SPE 2x50" : d.sigla}</th>)}
-          </tr>
-        </thead>
-        {
-          grupos.map((grupo) => (
-            <tbody>
-              <tr class="pbs__grupo">
-                <th scope="rowgroup" colspan={disciplinas.length + 1}>{grupo.titulo}</th>
-              </tr>
-              {grupo.atletas.map((atleta) => (
-                <tr>
-                  <th scope="row">{atleta.nombre}</th>
-                  {disciplinas.map((d) => {
-                    const marca = atleta.marcas[d.sigla];
-                    return marca ? (
-                      <td
-                        class:list={{ "pbs__record": esRecord(atleta, d.sigla) }}
-                        title={`${marca.competencia} (${mesAnio(marca.fecha)})`}
-                      >
-                        {marca.valor}
-                      </td>
-                    ) : (
-                      <td class="pbs__vacio">—</td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          ))
-        }
-      </table>
-    </div>
     <p class="records__nota">
-      <span class="records__marca" aria-hidden="true"></span> Récord de la escuela. Marcas con
-      penalizaciones aplicadas. Fuente:
-      <a href={fuente.url} target="_blank" rel="noopener">{fuente.nombre}</a>. La marca de DYN de
-      Martín Andrioli se logró en la Copa del Mundo CMAS (Barranquilla, 2024).
+      Marcas con penalizaciones aplicadas. Fuente:
+      <a href={fuente.url} target="_blank" rel="noopener">{fuente.nombre}</a>. La marca de DYN
+      masculino se logró en la Copa del Mundo CMAS (Barranquilla, 2024). La marca de DBF femenino
+      no figura en el registro de la FAAS: la informó la escuela.
     </p>
   </div>
 </section>
@@ -192,59 +152,6 @@ const esRecord = (atleta: Atleta, sigla: Disciplina) =>
     font-size: 0.9rem;
   }
 
-  .pbs__titulo {
-    margin: 3rem 0 1rem;
-    font-size: 1.1rem;
-  }
-
-  .pbs__wrap {
-    overflow-x: auto;
-  }
-
-  .pbs {
-    width: 100%;
-    min-width: 40rem;
-    border-collapse: collapse;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .pbs th,
-  .pbs td {
-    padding: 0.7rem 0.9rem;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    white-space: nowrap;
-  }
-
-  .pbs thead th {
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 500;
-  }
-
-  .pbs tbody th[scope="row"] {
-    font-weight: 500;
-  }
-
-  .pbs__grupo th {
-    padding-top: 1.4rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-blue-400);
-  }
-
-  .pbs__vacio {
-    color: rgba(255, 255, 255, 0.35);
-  }
-
-  .pbs__record {
-    position: relative;
-    color: var(--color-blue-400);
-    font-weight: 600;
-  }
-
   .records__nota {
     margin-top: 1.25rem;
     font-size: 0.85rem;
@@ -254,14 +161,5 @@ const esRecord = (atleta: Atleta, sigla: Disciplina) =>
 
   .records__nota a {
     color: var(--color-blue-400);
-  }
-
-  .records__marca {
-    display: inline-block;
-    width: 0.7rem;
-    height: 0.7rem;
-    border-radius: 999px;
-    background: var(--color-blue-400);
-    vertical-align: baseline;
   }
 </style>

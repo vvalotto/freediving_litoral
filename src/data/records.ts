@@ -1,13 +1,17 @@
 // Marcas personales (PB) en apnea indoor, tomadas del Registro Histórico de Marcas Deportivas
 // de la FAAS 2013–2025. Los atletas figuran por CLUB REGATAS SANTA FE / FREEDIVING REGATAS DE SANTA FE.
 // Para actualizar: reemplazar la marca de la disciplina con la nueva (valor, fecha ISO y competencia).
+// Las marcas que no figuran en el registro llevan una `nota`.
 
 export type Disciplina = "STA" | "DNF" | "DYN" | "DBF" | "SPE";
 
 export interface Marca {
   valor: string;
-  fecha: string;
-  competencia: string;
+  /** Fecha ISO de la competencia, si se conoce */
+  fecha?: string;
+  competencia?: string;
+  /** Aclaración cuando la marca no sale del registro FAAS */
+  nota?: string;
 }
 
 export interface Atleta {
@@ -194,6 +198,10 @@ export const atletas: Atleta[] = [
         "valor": "4:38.26",
         "fecha": "2025-11-22",
         "competencia": "V Competencia Nacional de Apnea Indoor Bahía Blanca 2025"
+      },
+      "DBF": {
+        "valor": "105.73 m",
+        "nota": "Informada por la escuela; no figura en el registro FAAS"
       },
       "SPE": {
         "valor": "1:48.24",
