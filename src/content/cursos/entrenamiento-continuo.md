@@ -2,27 +2,26 @@
 titulo: "Entrenamiento continuo"
 categoria: "entrenamiento"
 nivel: "Intermedio / Avanzado"
-duracion: "Anual, 2 días por semana"
-resumen: "Para quienes completaron el curso inicial o certifican experiencia previa: entrenamiento periodizado orientado a competencia."
+resumen: "Para apneístas con el Nivel 1 aprobado o experiencia previa que quieren seguir mejorando su técnica y, si lo desean, competir."
 destacados:
-  - "2 días por semana, todo el año"
-  - "120 minutos de entrenamiento en pileta por sesión"
-  - "Orientado a torneos nacionales e internacionales"
-  - "Evaluaciones periódicas de marcas personales"
+  - "Técnica en STA, DNF, DYN y DBF"
+  - "Seguridad activa en cada sesión"
+  - "Preparación para competencias FAAS"
+  - "Días y horarios a coordinar"
 introduccion:
-  - "Una vez completado el curso de Apneísta Nivel 1 (o certificando experiencia previa en apnea), se habilita el Grupo de Entrenamiento Continuo: nuestro espacio de trabajo anual para apneistas que quieren perfeccionar la técnica y competir."
-  - "El entrenamiento está periodizado a lo largo del año, con fases específicas y objetivos de competencia claros, siempre bajo los protocolos de seguridad activa de nuestros instructores."
+  - "El Grupo de Entrenamiento Continuo es el espacio para seguir creciendo después del curso de Apneísta Nivel 1: apneístas que quieren pulir su técnica, ganar confianza en el agua y, quienes lo buscan, competir representando a la escuela."
+  - "Entrenamos siempre acompañados por nuestros instructores y bajo los protocolos de seguridad de la FAAS y la CMAS."
 secciones:
-  - titulo: "Periodización del entrenamiento"
+  - titulo: "Técnica en las disciplinas de pileta"
     parrafos:
-      - "Organizamos el año en fases: volumen (trabajo aeróbico e hipercápnico), intensidad (trabajo hipóxico), técnica refinada y puesta a punto (tapering) antes de cada competencia."
-  - titulo: "Preparación para competencias"
+      - "Trabajamos la apnea estática (STA) y las dinámicas sin aletas (DNF), con monoaleta (DYN) y con bialetas (DBF), corrigiendo la técnica de cada apneísta según su nivel y sus objetivos."
+  - titulo: "Seguridad y trabajo en equipo"
     parrafos:
-      - "Entrenamos en función del calendario de torneos nacionales de apnea estática y dinámica, con proyección hacia selectivos y torneos internacionales para quienes buscan representar a la escuela."
-  - titulo: "Medición de progreso"
+      - "Cada sesión se hace con sistema de compañeros y supervisión de un instructor. La seguridad activa es parte del entrenamiento, no un agregado."
+  - titulo: "Competencia, para quien la busque"
     parrafos:
-      - "Hacemos evaluaciones periódicas de marcas personales bajo los reglamentos CMAS/FAAS, para que cada apneísta pueda seguir su propia evolución a lo largo del año."
-requisitos: "Haber completado el curso de Apneísta Nivel 1 o certificar experiencia previa en apnea."
+      - "Quienes quieren competir se preparan para las competencias nacionales de apnea indoor de la FAAS. Competir no es obligatorio: el grupo también es para quienes entrenan por el desafío personal."
+requisitos: "Haber completado el curso de Apneísta Nivel 1 o certificar experiencia previa en apnea. Los días, horarios y lugar de entrenamiento los coordinamos por WhatsApp."
 fotoPortada: "equipo/equipo-aletas-mascara-borde-pileta.jpg"
 fotoPortadaAlt: "Equipo conversando en el borde de la pileta junto a sus aletas y máscara"
 orden: 5

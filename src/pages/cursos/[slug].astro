@@ -2,6 +2,8 @@
 import Foto from "../../components/Foto.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { recordsEscuela } from "../../data/records";
+import { escuela } from "../../lib/escuela";
 
 export async function getStaticPaths() {
   const cursos = (await getCollection("cursos")).sort(
@@ -41,6 +43,12 @@ const ficha = [
   { etiqueta: "Requisito previo", valor: d.prerrequisito },
   { etiqueta: "Duración", valor: d.duracion },
 ].filter((item) => item.valor);
+
+const esEntrenamiento = d.categoria === "entrenamiento";
+const recordsMasculinos = recordsEscuela("M");
+const destacadosRecords = ["STA", "DYN", "DBF"]
+  .map((sigla) => recordsMasculinos.find((r) => r.disciplina.sigla === sigla))
+  .filter((r) => r?.marca);
 
 const documentos = [
   "DNI o pasaporte.",
@@ -170,6 +178,28 @@ const documentos = [
       )
     }
 
+    {
+      esEntrenamiento && (
+        <section class="curso__bloque">
+          <h2>Resultados del grupo</h2>
+          <p class="curso__nota">
+            Nuestros atletas compiten en las competencias nacionales de la FAAS. Algunos récords de la
+            escuela:
+          </p>
+          <ul class="marcas">
+            {destacadosRecords.map((r) => (
+              <li class="marcas__item">
+                <span class="marcas__valor">{r!.marca!.valor}</span>
+                <span class="marcas__sigla">{r!.disciplina.sigla}</span>
+                <span class="marcas__prueba">{r!.atleta!.nombre}</span>
+              </li>
+            ))}
+          </ul>
+          <a class="curso__link" href={`${base}nosotros#records`}>Ver todos los récords de la escuela →</a>
+        </section>
+      )
+    }
+
     <section class="curso__bloque">
       <h2>Requisitos</h2>
       {
@@ -209,7 +239,15 @@ const documentos = [
   </div>
 
   <div class="container section discipline-cta">
-    <a class="btn btn--solid" href={`${base}contacto`}>Consultar e inscribirme</a>
+    {
+      esEntrenamiento ? (
+        <a class="btn btn--solid" href={escuela.whatsapp[0].url} target="_blank" rel="noopener noreferrer">
+          Coordinar por WhatsApp
+        </a>
+      ) : (
+        <a class="btn btn--solid" href={`${base}contacto`}>Consultar e inscribirme</a>
+      )
+    }
     <a class="btn btn--outline" href={`${base}cursos`}>Ver todos los cursos</a>
   </div>
 </BaseLayout>
@@ -525,6 +563,11 @@ const documentos = [
   .niveles-nav__next {
     text-align: right;
     margin-left: auto;
+  }
+
+  .curso__link {
+    display: inline-block;
+    font-weight: 500;
   }
 
   .discipline-cta {
