@@ -6,9 +6,9 @@ export const escuela = {
   email: "freedivinglitoral@gmail.com",
   telefono: "+5493434523986",
   whatsapp: [
-    { numero: "+54 9 343 452-3986", url: "https://wa.me/5493434523986" },
     { numero: "+54 9 342 547-7213", url: "https://wa.me/5493425477213" },
     { numero: "+54 9 342 393-4865", url: "https://wa.me/5493423934865" },
+    { numero: "+54 9 343 452-3986", url: "https://wa.me/5493434523986" },
   ],
   instagram: "https://instagram.com/freedivinglitoral",
 };

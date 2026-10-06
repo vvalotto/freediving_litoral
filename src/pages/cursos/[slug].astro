@@ -3,7 +3,6 @@ import Foto from "../../components/Foto.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { recordsEscuela } from "../../data/records";
-import { escuela } from "../../lib/escuela";
 
 export async function getStaticPaths() {
   const cursos = (await getCollection("cursos")).sort(
@@ -239,15 +238,9 @@ const documentos = [
   </div>
 
   <div class="container section discipline-cta">
-    {
-      esEntrenamiento ? (
-        <a class="btn btn--solid" href={escuela.whatsapp[0].url} target="_blank" rel="noopener noreferrer">
-          Coordinar por WhatsApp
-        </a>
-      ) : (
-        <a class="btn btn--solid" href={`${base}contacto`}>Consultar e inscribirme</a>
-      )
-    }
+    <a class="btn btn--solid" href={`${base}contacto`}>
+      {esEntrenamiento ? "Consultar días y horarios" : "Consultar e inscribirme"}
+    </a>
     <a class="btn btn--outline" href={`${base}cursos`}>Ver todos los cursos</a>
   </div>
 </BaseLayout>

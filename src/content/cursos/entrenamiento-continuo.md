@@ -21,7 +21,7 @@ secciones:
   - titulo: "Competencia, para quien la busque"
     parrafos:
       - "Quienes quieren competir se preparan para las competencias nacionales de apnea indoor de la FAAS. Competir no es obligatorio: el grupo también es para quienes entrenan por el desafío personal."
-requisitos: "Haber completado el curso de Apneísta Nivel 1 o certificar experiencia previa en apnea. Los días, horarios y lugar de entrenamiento los coordinamos por WhatsApp."
+requisitos: "Haber completado el curso de Apneísta Nivel 1 o certificar experiencia previa en apnea. Consultanos por los días, horarios y lugar de entrenamiento."
 fotoPortada: "equipo/equipo-aletas-mascara-borde-pileta.jpg"
 fotoPortadaAlt: "Equipo conversando en el borde de la pileta junto a sus aletas y máscara"
 orden: 5
