@@ -14,30 +14,26 @@ Sitio estático (Astro) publicado en GitHub Pages. Cada push a `main` compila y 
 ## Configuración por variables
 `astro.config.mjs` lee dos variables de repositorio (Settings → Secrets and variables → Actions → Variables):
 
-| Variable   | GitHub Pages actual (por defecto)      | Dominio propio                     |
-|------------|----------------------------------------|------------------------------------|
-| `SITE_URL` | `https://vvalotto.github.io`           | `https://freedivinglitoral.com.ar` |
-| `BASE_PATH`| `/freediving_litoral/`                 | `/`                                |
+| Variable   | Valor actual (dominio propio)   | Sin variables (github.io)       |
+|------------|---------------------------------|---------------------------------|
+| `SITE_URL` | `https://freedivinglitoral.ar`  | `https://vvalotto.github.io`    |
+| `BASE_PATH`| `/`                             | `/freediving_litoral/`          |
 
-Sin variables definidas se usa el valor por defecto, por lo que el sitio actual sigue funcionando.
-Build local con dominio propio: `SITE_URL=https://freedivinglitoral.com.ar BASE_PATH=/ npm run build`.
+Build local igual a producción: `SITE_URL=https://freedivinglitoral.ar BASE_PATH=/ npm run build`.
+Sin variables, el build apunta a la URL de github.io (útil para pruebas).
 
-## Puesta en producción con dominio propio (freedivinglitoral.com.ar)
-Solo se hace cuando el sitio esté listo.
+## Dominio propio: freedivinglitoral.ar (en producción desde 17/10/2026)
+- **Registro:** NIC Argentina, a nombre de Raúl Urquiza. **Vence el 03/10/2027**: renovar antes.
+- **DNS:** Cloudflare (plan Free), cuenta de Victor. Delegación en NIC.ar a
+  `carlos.ns.cloudflare.com` y `keira.ns.cloudflare.com`.
+- **Registros DNS** (todos en *DNS only*, nube gris; con proxy GitHub no puede emitir el certificado):
+  - `A` `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+  - `CNAME` `www` → `vvalotto.github.io`
+- **Repositorio:** `public/CNAME` con `freedivinglitoral.ar` y las variables de la tabla.
+- **GitHub → Settings → Pages:** Custom domain = `freedivinglitoral.ar`, *Enforce HTTPS* activado.
+- La URL vieja `https://vvalotto.github.io/freediving_litoral/` redirige al dominio propio.
 
-1. **Registrar el dominio** en nic.ar (requiere CUIT/CUIL y cuenta AFIP/ARCA). Registrarlo a nombre de la escuela.
-2. **Cloudflare (plan gratuito):** agregar el dominio y copiar los nameservers que indique.
-3. **En nic.ar:** delegar el dominio a esos nameservers.
-4. **Registros DNS en Cloudflare** (proxy desactivado, "solo DNS", hasta validar HTTPS):
-   - `A` `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `CNAME` `www` → `vvalotto.github.io`
-5. **Repositorio:**
-   - Crear el archivo `public/CNAME` con el contenido `freedivinglitoral.com.ar`.
-   - Definir las variables `SITE_URL` y `BASE_PATH` de la tabla.
-6. **GitHub → Settings → Pages:** Custom domain = `freedivinglitoral.com.ar`; activar *Enforce HTTPS*
-   cuando el certificado esté disponible (puede tardar hasta unas horas).
-7. Push (o *Run workflow*) y verificar `https://freedivinglitoral.com.ar`, la redirección de `www`,
-   `/sitemap-index.xml` y `/robots.txt`.
+Seguimiento del lanzamiento: issue #16.
 
 ## Checklist previo a publicar
 - [ ] Contenido y fotos revisados.
