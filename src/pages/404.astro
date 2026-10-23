@@ -5,10 +5,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const atajos = [
-  { titulo: "Cursos", texto: "Discovery y Apneísta Nivel 1 a 3", href: `${base}cursos` },
-  { titulo: "Nosotros", texto: "El equipo y los atletas", href: `${base}nosotros` },
-  { titulo: "Galería", texto: "Entrenamientos y competencias", href: `${base}galeria` },
-  { titulo: "Contacto", texto: "WhatsApp, correo e Instagram", href: `${base}contacto` },
+  { titulo: "Cursos", texto: "Discovery y Apneísta Nivel 1 a 3", href: `${base}cursos/` },
+  { titulo: "Nosotros", texto: "El equipo y los atletas", href: `${base}nosotros/` },
+  { titulo: "Galería", texto: "Entrenamientos y competencias", href: `${base}galeria/` },
+  { titulo: "Contacto", texto: "WhatsApp, correo e Instagram", href: `${base}contacto/` },
 ];
 ---
 
@@ -39,7 +39,7 @@ const atajos = [
       </p>
       <div class="perdido__actions">
         <a class="btn btn--solid" href={base}>Ir al inicio</a>
-        <a class="btn btn--outline" href={`${base}cursos`}>Ver cursos</a>
+        <a class="btn btn--outline" href={`${base}cursos/`}>Ver cursos</a>
       </div>
     </div>
   </section>

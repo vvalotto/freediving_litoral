@@ -194,7 +194,7 @@ const documentos = [
               </li>
             ))}
           </ul>
-          <a class="curso__link" href={`${base}nosotros#records`}>Ver todos los récords de la escuela →</a>
+          <a class="curso__link" href={`${base}nosotros/#records`}>Ver todos los récords de la escuela →</a>
         </section>
       )
     }
@@ -219,7 +219,7 @@ const documentos = [
       (anterior || siguiente) && (
         <nav class="niveles-nav" aria-label="Otros niveles">
           {anterior ? (
-            <a href={`${base}cursos/${anterior.id}`}>
+            <a href={`${base}cursos/${anterior.id}/`}>
               <span>Nivel anterior</span>
               {anterior.data.titulo}
             </a>
@@ -227,7 +227,7 @@ const documentos = [
             <span />
           )}
           {siguiente && (
-            <a class="niveles-nav__next" href={`${base}cursos/${siguiente.id}`}>
+            <a class="niveles-nav__next" href={`${base}cursos/${siguiente.id}/`}>
               <span>Siguiente nivel</span>
               {siguiente.data.titulo}
             </a>
@@ -238,10 +238,10 @@ const documentos = [
   </div>
 
   <div class="container section discipline-cta">
-    <a class="btn btn--solid" href={`${base}contacto`}>
+    <a class="btn btn--solid" href={`${base}contacto/`}>
       {esEntrenamiento ? "Consultar días y horarios" : "Consultar e inscribirme"}
     </a>
-    <a class="btn btn--outline" href={`${base}cursos`}>Ver todos los cursos</a>
+    <a class="btn btn--outline" href={`${base}cursos/`}>Ver todos los cursos</a>
   </div>
 </BaseLayout>
 

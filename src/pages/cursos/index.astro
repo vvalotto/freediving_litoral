@@ -51,7 +51,7 @@ const buceos = (curso: (typeof niveles)[number]) =>
       {
         niveles.map((curso) => (
           <li class="ruta__item">
-            <a class="ruta__card" href={`${base}cursos/${curso.id}`}>
+            <a class="ruta__card" href={`${base}cursos/${curso.id}/`}>
               <Foto
                 class="ruta__photo"
                 src={`gallery/${curso.data.fotoPortada}`}
@@ -118,7 +118,7 @@ const buceos = (curso: (typeof niveles)[number]) =>
             niveles.map((curso) => (
               <tr>
                 <th scope="row">
-                  <a href={`${base}cursos/${curso.id}`}>{curso.data.titulo}</a>
+                  <a href={`${base}cursos/${curso.id}/`}>{curso.data.titulo}</a>
                 </th>
                 {siglas.map((sigla) => <td>{marca(curso, sigla)}</td>)}
                 <td>{buceos(curso)}</td>
@@ -179,7 +179,7 @@ const buceos = (curso: (typeof niveles)[number]) =>
                 {curso.data.destacados.map((item) => <li>{item}</li>)}
               </ul>
             )}
-            <a class="btn btn--outline" href={`${base}cursos/${curso.id}`}>Ver detalle</a>
+            <a class="btn btn--outline" href={`${base}cursos/${curso.id}/`}>Ver detalle</a>
           </div>
         </article>
       ))
@@ -187,8 +187,8 @@ const buceos = (curso: (typeof niveles)[number]) =>
   </div>
 
   <div class="container section discipline-cta">
-    <a class="btn btn--solid" href={`${base}contacto`}>Consultar e inscribirme</a>
-    <a class="btn btn--outline" href={`${base}nosotros`}>Conocé al equipo</a>
+    <a class="btn btn--solid" href={`${base}contacto/`}>Consultar e inscribirme</a>
+    <a class="btn btn--outline" href={`${base}nosotros/`}>Conocé al equipo</a>
   </div>
 </BaseLayout>
 
